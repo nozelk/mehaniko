@@ -343,15 +343,29 @@
   }
 
   function renderBoardPreview(topic) {
+    const notes = asArray(topic.boardNotes);
     return `<div class="exam-board-preview" id="three-board">
       <header class="exam-board-preview-head">
         <div><span>TAKO MORA IZGLEDATI KONČNA RISBA</span><h4>To prekopiraj na tablo.</h4></div>
         <p>Barve so samo pomoč za učenje; na izpitu zadošča čitljiva skica z vsemi oznakami.</p>
       </header>
       <div class="focus-board three-board exam-board" style="--focus-accent:${escapeHtml(topic.accent || "#ff806f")}">
+        <p class="exam-board-mobile-hint"><span aria-hidden="true">↔</span> Povleci skico levo in desno; oznake ostanejo dovolj velike za branje.</p>
         <div class="focus-board-canvas three-board-canvas">${trustedBoardMarkup(topic.board)}</div>
         <div class="focus-legend three-board-legend">${asArray(topic.legend).map(item => `<span><i class="legend-${escapeHtml(item.color || "coral")}"></i>${escapeHtml(item.label || "")}</span>`).join("")}</div>
       </div>
+      ${notes.length ? `<section class="exam-board-guide" aria-label="Razlaga elementov na risbi">
+        <header>
+          <span>KAJ NA SLIKI POMENI KAJ</span>
+          <p>Preberi po številkah; vsaka kartica razloži en del skice, ki ga moraš znati pokazati in povedati.</p>
+        </header>
+        <div class="exam-board-guide-grid">
+          ${notes.map((note, index) => `<article class="exam-board-note">
+            <b>${String(index + 1).padStart(2, "0")}</b>
+            <div><h5>${escapeHtml(note.title || "")}</h5><p>${richText(note.body || "")}</p></div>
+          </article>`).join("")}
+        </div>
+      </section>` : ""}
     </div>`;
   }
 

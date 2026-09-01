@@ -1711,6 +1711,21 @@ h2 {
   stroke-dasharray: 5 6;
 }
 
+.focus-svg .board-leader,
+.focus-svg .board-cone-side {
+  fill: none;
+  stroke: #697188;
+  stroke-width: 1.15;
+  stroke-dasharray: 4 5;
+  stroke-linecap: round;
+}
+
+.focus-svg .board-footer {
+  fill: rgba(7, 9, 15, .76);
+  stroke: #30384d;
+  stroke-width: 1;
+}
+
 .focus-svg .board-potential {
   fill: none;
   stroke: var(--coral);
@@ -1753,6 +1768,17 @@ h2 {
   stroke: var(--green);
   stroke-width: 8;
   stroke-linecap: round;
+}
+
+.focus-svg .board-allowed-thin {
+  stroke-width: 4;
+}
+
+.focus-svg .board-circular-energy {
+  fill: none;
+  stroke: var(--green);
+  stroke-width: 1.6;
+  stroke-dasharray: 5 4;
 }
 
 .focus-svg .board-harmonic {
@@ -1876,6 +1902,10 @@ h2 {
   fill: #ecebf4;
   font-size: 13px;
   font-weight: 700;
+}
+
+.focus-svg .board-formula-small {
+  font-size: 11.5px;
 }
 
 .focus-svg .board-note {
@@ -3489,6 +3519,82 @@ h2 {
     0 16px 38px rgba(0, 0, 0, .2);
 }
 
+.exam-board-mobile-hint {
+  display: none;
+}
+
+.exam-board-guide {
+  margin-top: 12px;
+  padding: clamp(18px, 3vw, 26px);
+  border: 1px solid color-mix(in srgb, var(--script-accent) 28%, #30364a);
+  border-radius: 16px;
+  background:
+    linear-gradient(135deg, color-mix(in srgb, var(--script-accent) 5%, #10131d), #0d1018 62%);
+}
+
+.exam-board-guide > header {
+  display: grid;
+  grid-template-columns: minmax(190px, auto) minmax(0, 1fr);
+  gap: 22px;
+  align-items: baseline;
+  margin-bottom: 16px;
+}
+
+.exam-board-guide > header span {
+  color: var(--script-accent);
+  font-size: .63rem;
+  font-weight: 900;
+  letter-spacing: .12em;
+}
+
+.exam-board-guide > header p {
+  max-width: 660px;
+  margin: 0;
+  color: #9798a8;
+  font-size: .74rem;
+}
+
+.exam-board-guide-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 9px;
+}
+
+.exam-board-note {
+  min-width: 0;
+  display: grid;
+  grid-template-columns: 34px minmax(0, 1fr);
+  gap: 12px;
+  padding: 15px;
+  border: 1px solid #2c3346;
+  border-radius: 11px;
+  background: rgba(8, 10, 16, .62);
+}
+
+.exam-board-note > b {
+  width: 32px;
+  height: 32px;
+  display: grid;
+  place-items: center;
+  color: #090b10;
+  background: var(--script-accent);
+  border-radius: 9px 3px 9px 3px;
+  font: 900 .65rem ui-monospace, "SFMono-Regular", Consolas, monospace;
+}
+
+.exam-board-note h5 {
+  margin: 1px 0 6px;
+  color: #efedf5;
+  font-size: .84rem;
+}
+
+.exam-board-note p {
+  margin: 0;
+  color: #aaaab6;
+  font-size: .73rem;
+  line-height: 1.58;
+}
+
 .exam-step-list { display: grid; gap: 12px; }
 
 .exam-step {
@@ -4050,6 +4156,33 @@ h2 {
     grid-template-columns: 1fr;
     gap: 7px;
     align-items: start;
+  }
+
+  .exam-board-guide > header,
+  .exam-board-guide-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .exam-board-guide > header {
+    gap: 6px;
+  }
+
+  .exam-board-mobile-hint {
+    margin: 0;
+    padding: 10px 14px;
+    display: flex;
+    align-items: center;
+    gap: 9px;
+    color: #b8b7c2;
+    background: color-mix(in srgb, var(--script-accent) 7%, #0b0e16);
+    border-bottom: 1px solid #2d3447;
+    font-size: .69rem;
+  }
+
+  .exam-board-mobile-hint span {
+    color: var(--script-accent);
+    font-size: 1rem;
+    font-weight: 900;
   }
 
   .exam-step-say,

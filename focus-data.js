@@ -4,136 +4,219 @@
   const h = String.raw;
 
   const boards = {
-    straight: h`<svg class="focus-svg" viewBox="0 0 960 420" role="img" aria-labelledby="straight-board-title straight-board-desc">
+    straight: h`<svg class="focus-svg" viewBox="0 0 960 500" role="img" aria-labelledby="straight-board-title straight-board-desc">
       <title id="straight-board-title">Potencial, energija, dovoljena območja in harmonična aproksimacija</title>
-      <desc id="straight-board-desc">Dvojna potencialna jama z energijsko črto, obračališči, stabilnimi minimumi, nestabilnim maksimumom ter približkom s parabolo.</desc>
+      <desc id="straight-board-desc">Čista izpitna skica dvojne potencialne jame z energijsko črto, štirimi obračališči, stabilnimi minimumi, nestabilnim maksimumom in lokalno parabolo.</desc>
       <defs>
         <marker id="arrow-coral-straight" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto"><path d="M0 0 L8 4 L0 8 Z" fill="#ff806f"/></marker>
       </defs>
-      <rect class="board-panel" x="18" y="18" width="662" height="376" rx="18"/>
-      <text class="board-kicker" x="46" y="50">1 · IZ GRAFA PREBEREŠ CELOTNO GIBANJE</text>
-      <path class="board-axis" d="M64 345 H650 M64 345 V70"/>
-      <text class="board-label" x="33" y="74">U [J]</text><text class="board-label" x="625" y="368">x [m]</text>
-      <path class="board-potential" d="M74 91 C126 95 139 304 229 304 C303 304 323 170 379 170 C437 170 454 304 535 304 C608 304 623 113 654 91"/>
-      <path class="board-energy" d="M86 238 H642"/><text class="board-energy-text" x="610" y="228">E</text>
-      <path class="board-separatrix" d="M86 170 H642"/><text class="board-amber-text" x="536" y="159">separatrisa</text>
-      <path class="board-allowed" d="M161 345 H292 M468 345 H584"/><text class="board-green-text" x="169" y="378">dovoljeno: U ≤ E</text>
-      <circle class="board-turn" cx="162" cy="238" r="6"/><circle class="board-turn" cx="294" cy="238" r="6"/>
-      <circle class="board-turn" cx="466" cy="238" r="6"/><circle class="board-turn" cx="586" cy="238" r="6"/>
-      <path class="board-guide" d="M162 238 V344 M294 238 V344"/>
-      <text class="board-label" x="155" y="363">a</text><text class="board-label" x="288" y="363">b</text>
-      <circle class="board-stable" cx="229" cy="304" r="6"/><circle class="board-stable" cx="535" cy="304" r="6"/>
-      <circle class="board-unstable" cx="379" cy="170" r="6"/>
-      <text class="board-green-text" x="195" y="324">stabilno</text><text class="board-red-text" x="345" y="145">nestabilno</text>
-      <path class="board-force" d="M119 282 H153" marker-end="url(#arrow-coral-straight)"/>
-      <path class="board-force" d="M337 214 H305" marker-end="url(#arrow-coral-straight)"/>
-      <text class="board-coral-text" x="92" y="273">F = −U′</text>
-      <text class="board-note" x="397" y="386">obrat: v = 0, toda navadno F ≠ 0</text>
 
-      <rect class="board-panel" x="700" y="18" width="242" height="376" rx="18"/>
-      <text class="board-kicker" x="724" y="50">2 · POVEČAJ MINIMUM</text>
-      <path class="board-axis" d="M730 327 H918 M730 327 V90"/>
-      <path class="board-potential" d="M738 124 C776 244 797 299 824 299 C852 299 873 244 911 124"/>
-      <path class="board-harmonic" d="M748 153 Q824 443 900 153"/>
-      <circle class="board-stable" cx="824" cy="299" r="6"/><path class="board-guide" d="M824 299 V327"/>
-      <text class="board-label" x="812" y="349">x₀</text>
-      <text class="board-amber-text" x="742" y="104">U(x)</text><text class="board-violet-text" x="742" y="181">kvadratni približek</text>
-      <text class="board-note" x="721" y="356">U₀ = U(x₀)</text>
-      <text class="board-formula" x="708" y="380">U ≈ U₀ + ½U″(x₀)(x−x₀)²</text>
+      <rect class="board-panel" x="18" y="18" width="622" height="464" rx="18"/>
+      <text class="board-kicker" x="44" y="50">1 · IZ GRAFA PREBEREŠ CELOTNO GIBANJE</text>
+      <path class="board-axis" d="M62 410 H616 M62 410 V78"/>
+      <text class="board-label" x="32" y="82">U [J]</text>
+      <text class="board-label" x="590" y="433">x [m]</text>
+
+      <path class="board-potential" d="M76 96 C112 96 123 258 145 258 C159 258 177 322 212 322 C251 322 276 258 310 258 C326 258 332 184 354 184 C376 184 382 258 400 258 C432 258 455 322 498 322 C535 322 551 258 566 258 C591 258 593 113 612 96"/>
+      <path class="board-energy" d="M84 258 H614"/>
+      <text class="board-energy-text" x="596" y="246">E</text>
+      <path class="board-separatrix" d="M84 184 H614"/>
+      <text class="board-amber-text" x="510" y="171">E = U maksimuma</text>
+
+      <path class="board-allowed" d="M145 410 H310 M400 410 H566"/>
+      <text class="board-green-text" x="191" y="397">U(x) ≤ E</text>
+      <text class="board-green-text" x="443" y="397">U(x) ≤ E</text>
+      <path class="board-guide" d="M145 258 V409 M310 258 V409 M400 258 V409 M566 258 V409"/>
+      <circle class="board-turn" cx="145" cy="258" r="6"/>
+      <circle class="board-turn" cx="310" cy="258" r="6"/>
+      <circle class="board-turn" cx="400" cy="258" r="6"/>
+      <circle class="board-turn" cx="566" cy="258" r="6"/>
+      <text class="board-label" x="139" y="431">a</text>
+      <text class="board-label" x="304" y="431">b</text>
+      <text class="board-label" x="394" y="431">c</text>
+      <text class="board-label" x="560" y="431">d</text>
+
+      <circle class="board-stable" cx="212" cy="322" r="6"/>
+      <circle class="board-stable" cx="498" cy="322" r="6"/>
+      <circle class="board-unstable" cx="354" cy="184" r="6"/>
+      <text class="board-green-text" x="175" y="347">minimum: stabilno</text>
+      <text class="board-green-text" x="460" y="347">minimum: stabilno</text>
+      <text class="board-red-text" x="312" y="158">maksimum: nestabilno</text>
+
+      <path class="board-force" d="M105 220 H148" marker-end="url(#arrow-coral-straight)"/>
+      <text class="board-coral-text" x="87" y="205">U′ &lt; 0 ⇒ F &gt; 0</text>
+      <path class="board-force" d="M292 222 H250" marker-end="url(#arrow-coral-straight)"/>
+      <text class="board-coral-text" x="230" y="207">U′ &gt; 0 ⇒ F &lt; 0</text>
+
+      <rect class="board-footer" x="40" y="444" width="578" height="26" rx="8"/>
+      <text class="board-formula" x="55" y="462">½mẋ² = E − U(x) ≥ 0;  pri a,b,c,d: ẋ = 0</text>
+
+      <rect class="board-panel" x="658" y="18" width="284" height="464" rx="18"/>
+      <text class="board-kicker" x="682" y="50">2 · POVEČAJ STABILNI MINIMUM</text>
+      <path class="board-axis" d="M686 380 H918 M686 380 V88"/>
+      <text class="board-label" x="671" y="91">U</text>
+      <text class="board-label" x="912" y="400">x</text>
+      <path class="board-potential" d="M696 130 C739 250 770 322 805 322 C841 322 872 250 914 130"/>
+      <path class="board-harmonic" d="M705 154 Q805 488 905 154"/>
+      <circle class="board-stable" cx="805" cy="322" r="6"/>
+      <path class="board-guide" d="M805 322 V380"/>
+      <text class="board-label" x="794" y="402">x₀</text>
+      <text class="board-amber-text" x="868" y="119">U(x)</text>
+      <path class="board-leader" d="M738 187 L756 215"/>
+      <text class="board-violet-text" x="682" y="177">črtkano: parabola</text>
+      <text class="board-note" x="682" y="406">U₀ = U(x₀)</text>
+      <text class="board-green-text" x="682" y="424">U′(x₀)=0,  U″(x₀)&gt;0</text>
+      <rect class="board-footer" x="676" y="442" width="248" height="28" rx="8"/>
+      <text class="board-formula board-formula-small" x="687" y="461">U ≈ U₀ + ½U″(x₀)(x−x₀)²</text>
     </svg>`,
 
-    central: h`<svg class="focus-svg" viewBox="0 0 960 440" role="img" aria-labelledby="central-board-title central-board-desc">
+    central: h`<svg class="focus-svg" viewBox="0 0 960 500" role="img" aria-labelledby="central-board-title central-board-desc">
       <title id="central-board-title">Geometrija centralne sile, ploščinski zakon in efektivni potencial</title>
-      <desc id="central-board-desc">Eliptična orbita s silo proti centru in enakima ploščinama ter graf efektivnega potenciala z radialnima obračališčema in stabilno krožno orbito.</desc>
+      <desc id="central-board-desc">Elipsa s centrom sile v gorišču, radialno silo, ploščinskim zakonom ter ločen graf efektivnega potenciala z apsidama in pogojem za stabilni krožni tir.</desc>
       <defs>
         <marker id="arrow-cyan-central" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto"><path d="M0 0 L8 4 L0 8 Z" fill="#58d5f7"/></marker>
         <marker id="arrow-coral-central" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto"><path d="M0 0 L8 4 L0 8 Z" fill="#ff806f"/></marker>
       </defs>
-      <rect class="board-panel" x="18" y="18" width="442" height="398" rx="18"/>
-      <text class="board-kicker" x="45" y="50">1 · GEOMETRIJA IN DVA INTEGRALA</text>
-      <ellipse class="board-orbit" cx="244" cy="225" rx="171" ry="105" transform="rotate(-10 244 225)"/>
-      <circle class="board-center" cx="167" cy="239" r="8"/><circle class="board-particle" cx="365" cy="153" r="7"/>
-      <path class="board-radius" d="M167 239 L365 153" marker-end="url(#arrow-cyan-central)"/>
-      <path class="board-force" d="M359 157 L301 182" marker-end="url(#arrow-coral-central)"/>
-      <path class="board-velocity" d="M365 153 L400 202" marker-end="url(#arrow-cyan-central)"/>
-      <path class="board-area board-area-one" d="M167 239 L101 180 A171 105 -10 0 1 136 136 Z"/>
-      <path class="board-area board-area-two" d="M167 239 L389 273 A171 105 -10 0 1 362 319 Z"/>
-      <text class="board-label" x="148" y="260">O</text><text class="board-label" x="372" y="148">m</text>
-      <text class="board-cyan-text" x="257" y="180">r</text><text class="board-coral-text" x="300" y="174">F(r)eᵣ</text><text class="board-cyan-text" x="403" y="207">v</text>
-      <text class="board-green-text" x="82" y="151">ΔA₁</text><text class="board-green-text" x="372" y="337">ΔA₂</text>
-      <circle class="board-l-dot" cx="218" cy="84" r="15"/><circle class="board-l-core" cx="218" cy="84" r="4"/>
-      <text class="board-violet-text" x="242" y="89">L ⟂ ravnina</text>
-      <text class="board-formula" x="48" y="389">N = r×F = 0  ⇒  L = konst.  ⇒  Ȧ = L/(2m)</text>
 
-      <rect class="board-panel" x="478" y="18" width="464" height="398" rx="18"/>
-      <text class="board-kicker" x="505" y="50">2 · RADIALNO GIBANJE JE 1D</text>
-      <path class="board-axis" d="M522 342 H913 M522 342 V78"/>
-      <text class="board-label" x="498" y="82">Uₑ𝒻</text><text class="board-label" x="906" y="365">r</text>
-      <path class="board-effective" d="M535 83 C548 118 567 229 612 276 C654 320 696 293 726 249 C764 192 810 178 910 174"/>
-      <path class="board-bare-potential" d="M539 331 C568 267 617 215 690 195 C756 178 832 175 910 174"/>
-      <path class="board-energy" d="M548 219 H907"/>
-      <circle class="board-turn" cx="574" cy="219" r="6"/><circle class="board-turn" cx="750" cy="219" r="6"/>
-      <path class="board-guide" d="M574 219 V341 M750 219 V341"/>
-      <text class="board-label" x="560" y="363">r₋</text><text class="board-label" x="738" y="363">r₊</text>
-      <circle class="board-stable" cx="676" cy="292" r="7"/><path class="board-guide" d="M676 292 V341"/>
-      <text class="board-green-text" x="644" y="318">krožni tir</text><text class="board-energy-text" x="879" y="209">E</text>
-      <text class="board-violet-text" x="785" y="158">Uₑ𝒻(r)</text><text class="board-coral-text" x="789" y="195">U(r)</text>
-      <text class="board-violet-text" x="535" y="105">centrifugalna pregrada</text>
-      <text class="board-formula" x="510" y="390">Uₑ𝒻(r) = U(r) + L²/(2mr²)</text>
+      <rect class="board-panel" x="18" y="18" width="442" height="464" rx="18"/>
+      <text class="board-kicker" x="44" y="50">1 · NAVOR = 0 ⇒ RAVNINA + ENAKE PLOŠČINE</text>
+      <ellipse class="board-orbit" cx="244" cy="226" rx="165" ry="98"/>
+      <circle class="board-center" cx="111" cy="226" r="8"/>
+      <circle class="board-particle" cx="370" cy="163" r="7"/>
+      <path class="board-radius" d="M111 226 L370 163" marker-end="url(#arrow-cyan-central)"/>
+      <path class="board-force" d="M363 165 L304 180" marker-end="url(#arrow-coral-central)"/>
+      <path class="board-velocity" d="M370 163 L414 195" marker-end="url(#arrow-cyan-central)"/>
+      <path class="board-area" d="M111 226 L119 172 A165 98 0 0 1 151 142 Z"/>
+      <path class="board-area" d="M111 226 L380 278 A165 98 0 0 1 350 307 Z"/>
+
+      <text class="board-label" x="94" y="248">O</text>
+      <text class="board-label" x="380" y="155">P (masa m)</text>
+      <text class="board-energy-text" x="226" y="181">r</text>
+      <text class="board-coral-text" x="270" y="204">F = F(r)eᵣ,  F(r)&lt;0</text>
+      <text class="board-energy-text" x="416" y="204">v</text>
+      <text class="board-green-text" x="77" y="151">ΔA₁</text>
+      <text class="board-green-text" x="366" y="323">ΔA₂</text>
+      <text class="board-green-text" x="145" y="357">isti Δt  ⇒  ΔA₁ = ΔA₂</text>
+
+      <circle class="board-l-dot" cx="218" cy="88" r="15"/>
+      <circle class="board-l-core" cx="218" cy="88" r="4"/>
+      <text class="board-violet-text" x="243" y="93">L iz ravnine</text>
+
+      <rect class="board-footer" x="38" y="414" width="402" height="50" rx="8"/>
+      <text class="board-formula" x="52" y="434">N = r × F = 0  ⇒  L = konst.</text>
+      <text class="board-formula" x="52" y="454">dA/dt = L/(2m) = konst.</text>
+
+      <rect class="board-panel" x="478" y="18" width="464" height="464" rx="18"/>
+      <text class="board-kicker" x="504" y="50">2 · RADIALNO GIBANJE V EFEKTIVNEM POTENCIALU</text>
+      <path class="board-axis" d="M522 386 H916 M522 386 V82"/>
+      <text class="board-label" x="494" y="86">energija [J]</text>
+      <text class="board-label" x="910" y="408">r</text>
+
+      <path class="board-effective" d="M536 92 C548 135 558 204 579 238 C611 290 644 318 681 318 C713 318 730 276 756 238 C791 190 847 181 912 181"/>
+      <path class="board-bare-potential" d="M540 368 C575 293 627 246 694 215 C758 188 835 183 912 181"/>
+      <path class="board-energy" d="M548 238 H912"/>
+      <text class="board-energy-text" x="894" y="226">E</text>
+
+      <circle class="board-turn" cx="579" cy="238" r="6"/>
+      <circle class="board-turn" cx="756" cy="238" r="6"/>
+      <path class="board-guide" d="M579 238 V386 M756 238 V386"/>
+      <text class="board-label" x="567" y="408">r₋</text>
+      <text class="board-label" x="744" y="408">r₊</text>
+      <path class="board-allowed board-allowed-thin" d="M579 369 H756"/>
+      <text class="board-green-text" x="596" y="359">radialno dovoljeno</text>
+
+      <circle class="board-stable" cx="681" cy="318" r="7"/>
+      <path class="board-guide" d="M681 318 V386"/>
+      <path class="board-circular-energy" d="M643 318 H719"/>
+      <text class="board-green-text" x="694" y="342">minimum</text>
+      <text class="board-label" x="669" y="408">r_c</text>
+      <text class="board-green-text" x="724" y="322">E_c</text>
+
+      <path class="board-leader" d="M589 111 L551 134"/>
+      <text class="board-violet-text" x="548" y="105">L²/(2mr²) → ∞</text>
+      <text class="board-violet-text" x="818" y="163">U_eff(r)</text>
+      <text class="board-coral-text" x="821" y="207">U(r)</text>
+
+      <rect class="board-footer" x="500" y="428" width="420" height="38" rx="8"/>
+      <text class="board-formula" x="516" y="452">U_eff(r) = U(r) + L²/(2mr²)</text>
     </svg>`,
 
-    rigid: h`<svg class="focus-svg" viewBox="0 0 960 540" role="img" aria-labelledby="rigid-board-title rigid-board-desc">
-      <title id="rigid-board-title">Togo telo: kinematika, vztrajnost, dinamika in kotaljenje</title>
-      <desc id="rigid-board-desc">Štirje prikazi: translacija in rotacija telesa, glavne osi z nevzporednima omega in L, precesija proste vrtavke ter kotaljenje brez drsenja.</desc>
+    rigid: h`<svg class="focus-svg" viewBox="0 0 960 650" role="img" aria-labelledby="rigid-board-title rigid-board-desc">
+      <title id="rigid-board-title">Togo telo: kinematika, vztrajnost, prosta vrtavka in kotaljenje</title>
+      <desc id="rigid-board-desc">Štirje ločeni, čitljivi prikazi: hitrost točke, glavne osi vztrajnosti, precesijski stožec proste vrtavke in kotaljenje brez drsenja.</desc>
       <defs>
         <marker id="arrow-cyan-rigid" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto"><path d="M0 0 L8 4 L0 8 Z" fill="#58d5f7"/></marker>
         <marker id="arrow-coral-rigid" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto"><path d="M0 0 L8 4 L0 8 Z" fill="#ff806f"/></marker>
         <marker id="arrow-violet-rigid" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto"><path d="M0 0 L8 4 L0 8 Z" fill="#9d83f4"/></marker>
       </defs>
-      <rect class="board-panel" x="18" y="18" width="447" height="238" rx="18"/>
-      <text class="board-kicker" x="43" y="49">1 · LEGA = TRANSLACIJA + ROTACIJA</text>
-      <path class="board-body" d="M185 83 L325 68 L401 142 L354 220 L211 208 L143 147 Z"/>
-      <circle class="board-center" cx="273" cy="151" r="7"/><circle class="board-particle" cx="365" cy="111" r="6"/>
-      <path class="board-radius" d="M273 151 L365 111" marker-end="url(#arrow-cyan-rigid)"/>
-      <path class="board-velocity" d="M273 151 L273 92" marker-end="url(#arrow-cyan-rigid)"/>
-      <path class="board-force" d="M365 111 L389 165" marker-end="url(#arrow-coral-rigid)"/>
-      <path class="board-omega" d="M273 151 L229 69" marker-end="url(#arrow-violet-rigid)"/>
-      <text class="board-label" x="257" y="172">C</text><text class="board-label" x="375" y="106">P</text>
-      <text class="board-cyan-text" x="312" y="124">ξₚ</text><text class="board-cyan-text" x="282" y="94">v꜀</text>
-      <text class="board-coral-text" x="383" y="183">ω×ξₚ</text><text class="board-violet-text" x="209" y="68">ω</text>
-      <text class="board-formula" x="42" y="239">vₚ = v꜀ + ω×ξₚ</text>
 
-      <rect class="board-panel" x="483" y="18" width="459" height="238" rx="18"/>
-      <text class="board-kicker" x="508" y="49">2 · RAZPORED MASE DOLOČA J</text>
-      <ellipse class="board-ellipsoid" cx="695" cy="151" rx="120" ry="65" transform="rotate(-12 695 151)"/>
-      <path class="board-axis" d="M555 151 H836 M695 229 V69 M620 203 L785 95"/>
-      <circle class="board-center" cx="695" cy="151" r="6"/>
-      <path class="board-omega" d="M695 151 L753 79" marker-end="url(#arrow-violet-rigid)"/>
-      <path class="board-radius" d="M695 151 L806 112" marker-end="url(#arrow-cyan-rigid)"/>
-      <text class="board-violet-text" x="746" y="73">ω</text><text class="board-cyan-text" x="811" y="111">L = Jω</text>
-      <text class="board-red-text" x="551" y="222">na splošno L ∦ ω</text>
-      <text class="board-formula" x="512" y="239">J = diag(J₁,J₂,J₃) v glavnih oseh</text>
+      <rect class="board-panel" x="18" y="18" width="447" height="292" rx="18"/>
+      <text class="board-kicker" x="43" y="49">1 · KINEMATIKA IZBRANE TOČKE P</text>
+      <path class="board-body" d="M180 91 L323 76 L406 149 L357 239 L205 227 L137 156 Z"/>
+      <circle class="board-center" cx="267" cy="162" r="7"/>
+      <circle class="board-particle" cx="366" cy="121" r="6"/>
+      <path class="board-radius" d="M267 162 L366 121" marker-end="url(#arrow-cyan-rigid)"/>
+      <path class="board-velocity" d="M267 162 L267 92" marker-end="url(#arrow-cyan-rigid)"/>
+      <path class="board-force" d="M366 121 L410 176" marker-end="url(#arrow-coral-rigid)"/>
+      <path class="board-omega-arc" d="M218 165 A50 50 0 0 1 253 113" marker-end="url(#arrow-violet-rigid)"/>
+      <text class="board-label" x="250" y="184">C</text>
+      <text class="board-label" x="378" y="118">P</text>
+      <text class="board-energy-text" x="311" y="136">ξ_P</text>
+      <text class="board-energy-text" x="278" y="97">v_C</text>
+      <text class="board-violet-text" x="202" y="120">ω</text>
+      <text class="board-coral-text" x="344" y="201">ω × ξ_P</text>
+      <rect class="board-footer" x="34" y="267" width="415" height="29" rx="8"/>
+      <text class="board-formula" x="50" y="287">v_P = v_C + ω × ξ_P</text>
 
-      <rect class="board-panel" x="18" y="274" width="447" height="242" rx="18"/>
-      <text class="board-kicker" x="43" y="305">3 · PROSTA VRTAVKA</text>
-      <path class="board-radius" d="M242 487 L242 326" marker-end="url(#arrow-cyan-rigid)"/>
-      <ellipse class="board-guide" cx="242" cy="356" rx="93" ry="29"/>
-      <path class="board-body-axis" d="M242 487 L311 342" marker-end="url(#arrow-coral-rigid)"/>
-      <path class="board-omega" d="M242 487 L288 332" marker-end="url(#arrow-violet-rigid)"/>
-      <path class="board-precession" d="M177 373 C207 401 277 402 311 366" marker-end="url(#arrow-coral-rigid)"/>
-      <text class="board-cyan-text" x="252" y="329">L = konst.</text><text class="board-coral-text" x="316" y="343">e₃</text>
-      <text class="board-violet-text" x="292" y="331">ω</text><text class="board-coral-text" x="313" y="386">precesija</text>
-      <text class="board-formula" x="42" y="500">N = 0 ⇒ L in Tᵣₒₜ sta konstantna</text>
+      <rect class="board-panel" x="483" y="18" width="459" height="292" rx="18"/>
+      <text class="board-kicker" x="508" y="49">2 · VZTRAJNOSTNI TENZOR IN GLAVNE OSI</text>
+      <ellipse class="board-ellipsoid" cx="710" cy="160" rx="118" ry="62" transform="rotate(-12 710 160)"/>
+      <path class="board-axis" d="M568 160 H856 M710 233 V80 M628 216 L799 98"/>
+      <circle class="board-center" cx="710" cy="160" r="6"/>
+      <path class="board-omega" d="M710 160 L758 95" marker-end="url(#arrow-violet-rigid)"/>
+      <path class="board-radius" d="M710 160 L830 133" marker-end="url(#arrow-cyan-rigid)"/>
+      <text class="board-note" x="845" y="150">e₁</text>
+      <text class="board-note" x="718" y="86">e₂</text>
+      <text class="board-note" x="614" y="223">e₃</text>
+      <text class="board-violet-text" x="751" y="84">ω</text>
+      <text class="board-energy-text" x="817" y="122">L = Jω</text>
+      <text class="board-red-text" x="650" y="242">L ∦ ω, razen na glavni osi</text>
+      <rect class="board-footer" x="499" y="267" width="427" height="29" rx="8"/>
+      <text class="board-formula" x="515" y="287">J = diag(J₁,J₂,J₃),   L = Jω</text>
 
-      <rect class="board-panel" x="483" y="274" width="459" height="242" rx="18"/>
-      <text class="board-kicker" x="508" y="305">4 · SISTEM TELES: DODAJ VEZI</text>
-      <path class="board-ground" d="M520 469 H906"/><circle class="board-body" cx="697" cy="401" r="68"/>
-      <circle class="board-center" cx="697" cy="401" r="7"/><circle class="board-contact" cx="697" cy="469" r="7"/>
-      <path class="board-radius" d="M697 401 L814 401" marker-end="url(#arrow-cyan-rigid)"/>
-      <path class="board-omega-arc" d="M655 370 A51 51 0 0 1 726 354" marker-end="url(#arrow-violet-rigid)"/>
-      <text class="board-cyan-text" x="812" y="391">v꜀</text><text class="board-violet-text" x="732" y="350">ω</text>
-      <text class="board-green-text" x="714" y="482">vₐ = 0</text>
-      <text class="board-formula" x="510" y="500">kotaljenje: v꜀ = Rω; statično trenje ni nujno μN</text>
+      <rect class="board-panel" x="18" y="328" width="447" height="304" rx="18"/>
+      <text class="board-kicker" x="43" y="359">3 · PROSTA VRTAVKA (N = 0)</text>
+      <path class="board-cone-side" d="M242 558 L136 422 M242 558 L348 422"/>
+      <ellipse class="board-guide" cx="242" cy="422" rx="106" ry="30"/>
+      <path class="board-radius" d="M242 558 L242 370" marker-end="url(#arrow-cyan-rigid)"/>
+      <path class="board-omega" d="M242 558 L292 376" marker-end="url(#arrow-violet-rigid)"/>
+      <path class="board-body-axis" d="M242 558 L342 422" marker-end="url(#arrow-coral-rigid)"/>
+      <path class="board-precession" d="M136 422 C174 468 308 468 348 422" marker-end="url(#arrow-coral-rigid)"/>
+      <circle class="board-center" cx="242" cy="558" r="6"/>
+      <text class="board-energy-text" x="144" y="373">L = konst.</text>
+      <text class="board-violet-text" x="298" y="378">ω</text>
+      <text class="board-coral-text" x="350" y="425">e₃(t)</text>
+      <text class="board-coral-text" x="282" y="486">precesija telesne osi</text>
+      <rect class="board-footer" x="34" y="585" width="415" height="31" rx="8"/>
+      <text class="board-formula" x="50" y="606">N = 0 ⇒ L = konst.,   T_rot = konst.</text>
+
+      <rect class="board-panel" x="483" y="328" width="459" height="304" rx="18"/>
+      <text class="board-kicker" x="508" y="359">4 · KOTALJENJE BREZ DRSENJA</text>
+      <path class="board-ground" d="M520 537 H906"/>
+      <circle class="board-body" cx="707" cy="465" r="72"/>
+      <circle class="board-center" cx="707" cy="465" r="7"/>
+      <circle class="board-contact" cx="707" cy="537" r="7"/>
+      <path class="board-guide" d="M707 465 V537"/>
+      <path class="board-radius" d="M707 465 L830 465" marker-end="url(#arrow-cyan-rigid)"/>
+      <path class="board-omega-arc" d="M664 432 A54 54 0 0 1 739 413" marker-end="url(#arrow-violet-rigid)"/>
+      <text class="board-label" x="687" y="454">C</text>
+      <text class="board-label" x="688" y="529">A</text>
+      <text class="board-note" x="717" y="505">R</text>
+      <text class="board-energy-text" x="816" y="454">v_C</text>
+      <text class="board-violet-text" x="745" y="411">ω</text>
+      <text class="board-green-text" x="731" y="532">v_A = 0</text>
+      <rect class="board-footer" x="499" y="585" width="427" height="31" rx="8"/>
+      <text class="board-formula board-formula-small" x="515" y="606">v_A=0 ⇔ v_C=Rω;   |F_t| ≤ μ_sN</text>
     </svg>`
   };
 
@@ -155,9 +238,15 @@
         { color: "red", label: "nestabilno ravnovesje" },
         { color: "violet", label: "harmonični približek" }
       ],
+      boardNotes: [
+        { title: "Energijska slika", body: h`Oranžna krivulja je potencial \(U(x)\), modra vodoravna črta pa celotna energija \(E\). Telo se giblje po osi \(x\), ne po krivulji.` },
+        { title: "Obračališča a, b, c, d", body: h`Rumene točke izpolnjujejo \(U=E\), zato je tam \(\dot x=0\). Zeleni odseki kažejo dovoljene lege \(U\le E\); med \(b\) in \(c\) telo pri tej energiji ne more biti.` },
+        { title: "Sila in ravnovesje", body: h`Velja \(F=-U'\): na padajočem delu kaže sila desno, na rastočem levo. Zeleni minimum je stabilno ravnovesje, rožnati maksimum pa nestabilno.` },
+        { title: "Povečan minimum", body: h`Pri \(x_0\) velja \(U_0=U(x_0)\), \(U'(x_0)=0\) in \(U''(x_0)>0\). Črtkana parabola je lokalni približek, iz katerega dobimo majhna harmonična nihanja.` }
+      ],
       drawSteps: [
         { title: "Osi in potencial", body: h`Nariši osi \(x\) in \(U\), nato krivuljo z vsaj enim minimumom in maksimumom. Reci: »Naklon potenciala določa silo, \(F=-U'\).«` },
-        { title: "Energijska črta", body: h`Z modro vodoravno črto nariši \(E\). Presečišča z \(U\) označi z \(a,b\): tam je \(E=U\), zato je \(\dot x=0\).` },
+        { title: "Energijska črta", body: h`Z modro vodoravno črto nariši \(E\). V tej dvojni jami presečišča z \(U\) označi z \(a,b,c,d\): tam je \(E=U\), zato je \(\dot x=0\).` },
         { title: "Dovoljeno območje", body: h`Z zeleno poudari dele osi, kjer \(U\le E\). Kjer je \(U>E\), bi bila kinetična energija negativna, zato je območje klasično prepovedano.` },
         { title: "Ravnovesja", body: h`Ekstreme označi posebej: minimum je stabilen, maksimum nestabilen. Obvezno povej, da obračališče in ravnovesje nista ista stvar.` },
         { title: "Povečaj minimum", body: h`Ob minimumu skiciraj parabolo. To neposredno vodi do \(U\simeq U_0+\tfrac12U''(x_0)(x-x_0)^2\) in majhnih harmoničnih nihanj.` }
@@ -255,9 +344,15 @@
       board: boards.central,
       legend: [
         { color: "coral", label: "centralna sila in potencial" },
-        { color: "cyan", label: "r, v in energija" },
+        { color: "cyan", label: "vektorja r, v in energijska črta E" },
         { color: "green", label: "enake ploščine in stabilni tir" },
-        { color: "violet", label: "vrtilna količina ter centrifugalna pregrada" }
+        { color: "violet", label: "L, U_eff in centrifugalni člen" }
+      ],
+      boardNotes: [
+        { title: "Smer centralne sile", body: h`\(\vec r\) kaže od centra \(O\) do delca \(P\). Sila leži na isti premici; narisana puščica proti \(O\) prikazuje privlačni primer \(F(r)<0\).` },
+        { title: "Ravnina in ploščine", body: h`Ker je \(\vec N=\vec r\times\vec F=0\), je \(\vec L\) konstantna in pravokotna na ravnino. V enakih časih sta ploščini enaki: \(\Delta A_1=\Delta A_2\).` },
+        { title: "Kaj pove energijska črta", body: h`Radialno gibanje je dovoljeno, kjer \(E\ge U_{\rm eff}\). \(r_-\) in \(r_+\) sta apsidi: tam je \(\dot r=0\), tangencialna hitrost pa pri \(L\ne0\) ostane.` },
+        { title: "Minimum in pregrada", body: h`Stabilen krog pri \(r_c\) zahteva \(E_c=U_{\rm eff}(r_c)\). Člen \(L^2/(2mr^2)\) je prepisana obodna kinetična energija, ne nova fizična sila.` }
       ],
       drawSteps: [
         { title: "Center, točka in zveznica", body: h`Nariši center \(O\), točko \(P\), vektor \(\vec r\) in silo po isti premici proti ali stran od centra. Zraven napiši \(\vec F=F(r)\vec e_r\).` },
@@ -367,10 +462,16 @@
       essence: h`Celotna zgodba je: geometrija \(\Rightarrow \vec v_P=\vec V_C+\vec\omega\times\vec\xi_P\); masa \(\Rightarrow\vec L_C=J_C\vec\omega\); dinamika \(\Rightarrow M\vec a_C=\vec F\) in \(J\dot{\vec\omega}+\vec\omega\times J\vec\omega=\vec N\).`,
       board: boards.rigid,
       legend: [
-        { color: "cyan", label: "translacija, položaj in L" },
-        { color: "coral", label: "rotacijski prispevek ter telesna os" },
-        { color: "violet", label: "kotna hitrost in glavne osi" },
-        { color: "green", label: "izpolnjen vezni pogoj" }
+        { color: "cyan", label: "translacija, vektor ξ_P in vrtilna količina L" },
+        { color: "coral", label: "rotacijski prispevek in telesna os e₃" },
+        { color: "violet", label: "kotna hitrost ω ter glavne osi" },
+        { color: "green", label: "stična točka in izpolnjen vezni pogoj" }
+      ],
+      boardNotes: [
+        { title: "Kinematika točke P", body: h`\(C\) je masno središče, \(P\) izbrana točka in \(\vec\xi_P\) vektor od \(C\) do \(P\). \(\vec v_C\) je translacija, \(\vec\omega\times\vec\xi_P\) rotacijski del; vsota je \(\vec v_P\).` },
+        { title: "Vztrajnostni tenzor", body: h`\(e_1,e_2,e_3\) so glavne osi, kjer je \(J\) diagonalna. Ker se komponente \(\omega_i\) množijo z različnimi \(J_i\), \(\vec L=J\vec\omega\) na splošno ni vzporedna z \(\vec\omega\).` },
+        { title: "Prosta vrtavka", body: h`Ko je \(\vec N=0\), je \(\vec L\) fiksna v prostoru in \(T_{\rm rot}\) se ohranja. Telesna os \(\vec e_3(t)\) precesira po stožcu okoli \(\vec L\).` },
+        { title: "Kotaljenje brez drsenja", body: h`\(A\) je trenutna stična točka. Pogoj \(\vec v_A=0\) da \(v_C=R\omega\). Statično trenje se izračuna in mora zadoščati \(|F_t|\le\mu_sN\).` }
       ],
       drawSteps: [
         { title: "Nariši telo, C in P", body: h`Izberi masno središče \(C\), poljubno točko \(P\) in \(\vec\xi_P=\vec r_P-\vec r_C\). Dodaj translacijsko hitrost \(\vec v_C\), os \(\vec\omega\) in tangentni člen \(\vec\omega\times\vec\xi_P\).` },

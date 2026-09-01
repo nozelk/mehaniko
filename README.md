@@ -8,6 +8,10 @@ Interaktivna priprava na ustni izpit iz mehanike za tri ključne teme:
 
 Vsaka tema vsebuje natančen vrstni red odgovora, risbo za tablo, ključne formule z legendami simbolov ter kratke razlage in izpeljave.
 
+## Javna stran
+
+https://nozelk.github.io/mehaniko/
+
 ## Uporaba
 
 Odpri `index.html` v sodobnem brskalniku. Stran je statična in ne potrebuje namestitve ali internetne povezave.
