@@ -1,0 +1,75 @@
+<!doctype html>
+<html lang="sl">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#090a10">
+  <meta name="description" content="Tri temeljito in preprosto razložene teme za ustni izpit iz mehanike: potenciali, centralna sila in togo telo.">
+  <title>Mehanika — samo 3 ustne teme</title>
+  <link rel="stylesheet" href="vendor/katex/katex.min.css">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <a class="skip-link" href="#view">Preskoči na vsebino</a>
+
+  <div class="app-shell">
+    <aside class="sidebar" id="sidebar" aria-label="Glavna navigacija">
+      <a class="brand" href="#/domov" aria-label="Mehanika, začetna stran">
+        <span class="brand-mark" aria-hidden="true">M</span>
+        <span><strong>MEHANIKA</strong><small>SAMO 3 TEME</small></span>
+      </a>
+
+      <label class="search-box" for="global-search">
+        <span aria-hidden="true">⌕</span>
+        <input id="global-search" type="search" placeholder="Išči v teh 3 temah …" autocomplete="off">
+        <kbd>/</kbd>
+      </label>
+      <div class="search-results" id="search-results" hidden></div>
+
+      <nav class="main-nav" aria-label="Načini učenja">
+        <a href="#/domov" data-route="domov"><span aria-hidden="true">⌂</span> Samo te 3 teme</a>
+        <a href="#/tema/premocrtno-potenciali" data-topic="premocrtno-potenciali"><span aria-hidden="true">1</span> Potenciali</a>
+        <a href="#/tema/centralna-sila" data-topic="centralna-sila"><span aria-hidden="true">2</span> Centralna sila</a>
+        <a href="#/tema/togo-telo" data-topic="togo-telo"><span aria-hidden="true">3</span> Togo telo</a>
+      </nav>
+
+      <div class="sidebar-bottom">
+        <div class="progress-ring" id="sidebar-progress" aria-label="Napredek po treh temah">
+          <svg viewBox="0 0 44 44" aria-hidden="true">
+            <circle class="ring-track" cx="22" cy="22" r="18"></circle>
+            <circle class="ring-value" cx="22" cy="22" r="18"></circle>
+          </svg>
+          <span>0%</span>
+        </div>
+        <div><strong>Tvoj napredek</strong><small id="progress-copy">0/3 teme</small></div>
+      </div>
+    </aside>
+
+    <div class="page-shell">
+      <header class="topbar">
+        <button class="icon-button mobile-menu" id="mobile-menu" type="button" aria-label="Odpri navigacijo" aria-expanded="false">☰</button>
+        <div class="breadcrumb" id="breadcrumb">Mehanika <span>/</span> Pregled</div>
+        <div class="topbar-actions">
+          <button class="quiet-button" id="random-topic" type="button">Naključna od treh</button>
+          <span class="saved-status"><i></i> lokalno shranjeno</span>
+        </div>
+      </header>
+
+      <main id="view" tabindex="-1"></main>
+    </div>
+  </div>
+
+  <div class="sidebar-scrim" id="sidebar-scrim" hidden></div>
+  <div class="toast" id="toast" role="status" aria-live="polite"></div>
+
+  <noscript>Za navigacijo in prikaz formul omogoči JavaScript.</noscript>
+  <script src="vendor/katex/katex.min.js" defer></script>
+  <script src="vendor/katex/contrib/auto-render.min.js" defer></script>
+  <script src="focus-data.js" defer></script>
+  <script src="easy-data.js" defer></script>
+  <script src="easy-central-data.js" defer></script>
+  <script src="easy-rigid-data.js" defer></script>
+  <script src="exam-script-data.js" defer></script>
+  <script src="three-app.js" defer></script>
+</body>
+</html>
