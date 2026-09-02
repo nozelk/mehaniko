@@ -739,13 +739,41 @@
     </section>`;
   }
 
-  function renderPager(topic) {
+  function topicNeighbors(topic) {
     const index = topics.findIndex(item => item.id === topic.id);
     const previous = topics[index - 1];
     const next = topics[index + 1];
+    return {
+      index,
+      previous: previous || null,
+      previousHref: previous ? `#/tema/${encodeURIComponent(previous.id)}` : "#/osnove",
+      previousTitle: previous ? previous.title : "Skupne osnove",
+      previousLabel: previous ? "Prejšnja tema" : "Pred prvo temo",
+      next: next || topics[0],
+      nextHref: `#/tema/${encodeURIComponent((next || topics[0]).id)}`,
+      nextTitle: (next || topics[0]).title,
+      nextLabel: next ? "Naslednja tema" : "Ponovi od začetka"
+    };
+  }
+
+  function renderTopicSwitcher(topic) {
+    const neighbors = topicNeighbors(topic);
+    return `<nav class="topic-switcher" aria-label="Prejšnja in naslednja tema" style="--switch-accent:${escapeHtml(topic.accent || "#ff806f")}">
+      <a class="topic-switcher-previous" href="${neighbors.previousHref}">
+        <b aria-hidden="true">←</b><span><small>${escapeHtml(neighbors.previousLabel)}</small><strong>${escapeHtml(neighbors.previousTitle)}</strong></span>
+      </a>
+      <div class="topic-switcher-current" aria-label="Trenutna tema ${neighbors.index + 1} od 3"><small>TRENUTNO</small><strong>${neighbors.index + 1}<span>/3</span></strong></div>
+      <a class="topic-switcher-next" href="${neighbors.nextHref}">
+        <span><small>${escapeHtml(neighbors.nextLabel)}</small><strong>${escapeHtml(neighbors.nextTitle)}</strong></span><b aria-hidden="true">→</b>
+      </a>
+    </nav>`;
+  }
+
+  function renderPager(topic) {
+    const neighbors = topicNeighbors(topic);
     return `<nav class="next-chapter focus-next three-topic-pager" aria-label="Prejšnja in naslednja od treh tem">
-      ${previous ? `<a href="#/tema/${encodeURIComponent(previous.id)}"><small>← prejšnja tema</small><strong>${escapeHtml(previous.title)}</strong></a>` : `<span class="three-pager-placeholder" aria-hidden="true"></span>`}
-      ${next ? `<a href="#/tema/${encodeURIComponent(next.id)}"><small>naslednja tema →</small><strong>${escapeHtml(next.title)}</strong></a>` : `<span class="three-pager-placeholder" aria-hidden="true"></span>`}
+      <a href="${neighbors.previousHref}"><small>← ${escapeHtml(neighbors.previousLabel)}</small><strong>${escapeHtml(neighbors.previousTitle)}</strong></a>
+      <a href="${neighbors.nextHref}"><small>${escapeHtml(neighbors.nextLabel)} →</small><strong>${escapeHtml(neighbors.nextTitle)}</strong></a>
     </nav>
     <p class="three-back-home"><a href="#/domov">← Nazaj na vse tri teme</a></p>`;
   }
@@ -773,6 +801,8 @@
             </div>
           </div>
         </section>
+
+        ${renderTopicSwitcher(topic)}
 
         <nav class="focus-jump three-jump-nav" aria-label="Kazalo teme">
           <button type="button" data-scroll-target="three-common-reminder">0 · Skupni opomnik</button>

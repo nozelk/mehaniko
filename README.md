@@ -1,4 +1,4 @@
-# Mehaniko
+# Mehanika
 
 Interaktivna priprava na ustni izpit iz mehanike za tri ključne teme:
 
@@ -12,7 +12,7 @@ Vsaka posebna tema nato gre v vrstnem redu: kratek opomnik skupnih osnov, defini
 
 ## Javna stran
 
-https://nozelk.github.io/mehaniko/
+https://nozelk.github.io/mehanika/
 
 ## Uporaba
 
