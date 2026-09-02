@@ -150,44 +150,45 @@
     derivations: [
       {
         title: "Iz rotacijske matrike do vektorja kotne hitrosti",
-        goal: h`Brez ugibanja izpeljati \(\dot{\vec\xi}=\vec\omega\times\vec\xi\).`,
+        goal: h`Iz spreminjanja orientacije \(Q(t)\) izračunamo kotno hitrost \(\vec\omega\) in prostorski odvod vektorja, pritrjenega na telo.`,
         steps: [
           { reason: "Rotacijska matrika ohranja skalarne produkte in dolžine.", tex: h`Q(t)Q^T(t)=I` },
-          { reason: "Enačbo odvajamo po času.", tex: h`\dot Q Q^T+Q\dot Q^T=0` },
+          { reason: "Enačbo odvajamo po času; odvod transponirane matrike je transponirani odvod.", rule: "produktno pravilo", tex: h`\frac d{dt}(QQ^T)=\dot Q Q^T+Q\frac d{dt}(Q^T)=\dot Q Q^T+Q\dot Q^T=0` },
           { reason: "Uvedemo matriko, ki meri trenutno spremembo orientacije v prostoru.", tex: h`\Omega=\dot Q Q^T` },
-          { reason: "Prejšnja enačba pove, da je ta matrika antisimetrična.", tex: h`\Omega^T=Q\dot Q^T=-\dot Q Q^T=-\Omega` },
+          { reason: "Transponiramo Ω in z odvajano enačbo pokažemo, da je antisimetrična.", rule: "transponiranje produkta", tex: h`\Omega^T=(\dot Q Q^T)^T=Q\dot Q^T=-\dot Q Q^T=-\Omega` },
           { reason: "V treh dimenzijah vsaki antisimetrični matriki pripada natanko en vektor ω.", tex: h`\Omega=\widehat\omega=\begin{pmatrix}0&-\omega_3&\omega_2\\ \omega_3&0&-\omega_1\\ -\omega_2&\omega_1&0\end{pmatrix},\qquad \widehat\omega\vec a=\vec\omega\times\vec a` },
           { reason: "Na telo pritrjen vektor ima stalne telesne koordinate a in prostorski zapis ξ=Qa.", tex: h`\vec\xi(t)=Q(t)\vec a,\qquad \dot{\vec a}=0` },
-          { reason: "Odvajamo in vstavimo identiteto QᵀQ=I.", tex: h`\dot{\vec\xi}=\dot Q\vec a=\dot Q Q^T\vec\xi=\Omega\vec\xi` },
+          { reason: "Odvajamo ξ=Qa, uporabimo a=Qᵀξ in upoštevamo, da so telesne koordinate a konstantne.", rule: "produktno pravilo", tex: h`\dot{\vec\xi}=\dot Q\vec a+Q\dot{\vec a}=\dot Q\vec a=\dot Q Q^T\vec\xi=\Omega\vec\xi` },
           { reason: "Antisimetrično preslikavo zapišemo kot vektorski produkt.", tex: h`\boxed{\dot{\vec\xi}=\vec\omega\times\vec\xi}` }
         ],
         result: "Kotna hitrost ni dodatna predpostavka; v treh dimenzijah nastane iz odvoda ortogonalne orientacije Q."
       },
       {
         title: "Transportni izrek za poljuben vektor",
-        goal: "Povezati odvod v inercialnih prostorskih oseh z odvodom v vrtečih telesnih oseh.",
+        goal: h`Izračunamo povezavo med odvodom v prostoru in odvodom v vrteči se telesni bazi.`,
         steps: [
           { reason: "Vektor razpišemo po telesni bazi; spreminjajo se lahko komponente in baza.", tex: h`\vec A(t)=\sum_{i=1}^{3}A_i(t)\vec e_i(t)` },
-          { reason: "Odvajamo s produktnim pravilom.", tex: h`\left(\frac{d\vec A}{dt}\right)_{\rm prostor}=\sum_i\dot A_i\vec e_i+\sum_i A_i\dot{\vec e}_i` },
+          { reason: "Odvajamo celoten zapis s produktnim pravilom: spreminjajo se komponente in bazni vektorji.", rule: "produktno pravilo", tex: h`\left(\frac{d\vec A}{dt}\right)_{\rm prostor}=\frac d{dt}\sum_iA_i\vec e_i=\sum_i\dot A_i\vec e_i+\sum_i A_i\dot{\vec e}_i` },
           { reason: "Prva vsota je po definiciji odvod komponent v telesnem sistemu.", tex: h`\left(\frac{d\vec A}{dt}\right)_{\rm telo}=\sum_i\dot A_i\vec e_i` },
           { reason: "Vsak telesni bazni vektor je pritrjen na telo.", tex: h`\dot{\vec e}_i=\vec\omega\times\vec e_i` },
           { reason: "Vektorski produkt je linearen, zato drugo vsoto združimo.", tex: h`\sum_i A_i(\vec\omega\times\vec e_i)=\vec\omega\times\sum_iA_i\vec e_i=\vec\omega\times\vec A` },
-          { reason: "Dobimo transportni izrek.", tex: h`\boxed{\left(\frac{d\vec A}{dt}\right)_{\rm prostor}=\left(\frac{d\vec A}{dt}\right)_{\rm telo}+\vec\omega\times\vec A}` }
+          { reason: "Obe prepoznani vsoti vstavimo nazaj v isto odvajano vrstico in dobimo transportni izrek.", tex: h`\left(\frac{d\vec A}{dt}\right)_{\rm prostor}=\underbrace{\sum_i\dot A_i\vec e_i}_{(d\vec A/dt)_{\rm telo}}+\underbrace{\sum_iA_i\dot{\vec e}_i}_{\vec\omega\times\vec A}=\boxed{\left(\frac{d\vec A}{dt}\right)_{\rm telo}+\vec\omega\times\vec A}` }
         ],
         result: "Člen ω×A ni nova sila; nastane samo zato, ker se telesna baza glede na prostor vrti."
       },
       {
         title: "Splošna relativna hitrost in pospešek, nato toga poenostavitev",
-        goal: "Izpeljati formule iz vrtečega sistema in jasno pokazati, kateri členi pri togem telesu izginejo.",
+        goal: h`Izračunamo hitrost in pospešek poljubne točke ter ju poenostavimo za togo telo.`,
         steps: [
           { reason: "Lego točke razstavimo na lego izhodišča vrtečega sistema in relativni vektor.", tex: h`\vec r=\vec r_C+\vec\xi` },
-          { reason: "Relativno hitrost definiramo kot telesni odvod relativnega vektorja.", tex: h`\vec v_{\rm rel}=\left(\frac{d\vec\xi}{dt}\right)_{\rm telo}` },
+          { reason: "Relativno hitrost in pospešek definiramo kot zaporedna telesna odvoda.", tex: h`\vec v_{\rm rel}=\left(\frac{d\vec\xi}{dt}\right)_{\rm telo},\qquad \vec a_{\rm rel}=\left(\frac{d\vec v_{\rm rel}}{dt}\right)_{\rm telo}` },
           { reason: "Transportni izrek da prostorski odvod relativnega vektorja.", tex: h`\left(\frac{d\vec\xi}{dt}\right)_{\rm prostor}=\vec v_{\rm rel}+\vec\omega\times\vec\xi` },
           { reason: "Odvajamo lego in dobimo splošno hitrost.", tex: h`\boxed{\vec v=\vec v_C+\vec\omega\times\vec\xi+\vec v_{\rm rel}}` },
           { reason: "Za pospešek odvajamo oba dodatna člena v prostoru.", tex: h`\vec a=\vec a_C+\frac d{dt}(\vec\omega\times\vec\xi)_{\rm prostor}+\left(\frac{d\vec v_{\rm rel}}{dt}\right)_{\rm prostor}` },
-          { reason: "Za prvi člen uporabimo produktno pravilo in že znani odvod ξ.", tex: h`\frac d{dt}(\vec\omega\times\vec\xi)=\dot{\vec\omega}\times\vec\xi+\vec\omega\times(\vec v_{\rm rel}+\vec\omega\times\vec\xi)` },
-          { reason: "Tudi relativno hitrost odvajamo s transportnim izrekom.", tex: h`\left(\frac{d\vec v_{\rm rel}}{dt}\right)_{\rm prostor}=\vec a_{\rm rel}+\vec\omega\times\vec v_{\rm rel}` },
-          { reason: "Združimo oba enaka člena z relativno hitrostjo.", tex: h`\boxed{\vec a=\vec a_C+\dot{\vec\omega}\times\vec\xi+\vec\omega\times(\vec\omega\times\vec\xi)+2\vec\omega\times\vec v_{\rm rel}+\vec a_{\rm rel}}` },
+          { reason: "Za rotacijski člen uporabimo produktno pravilo in že znani prostorski odvod ξ.", rule: "produktno pravilo za vektorski produkt", tex: h`\frac d{dt}(\vec\omega\times\vec\xi)_{\rm prostor}=\dot{\vec\omega}\times\vec\xi+\vec\omega\times\underbrace{(\vec v_{\rm rel}+\vec\omega\times\vec\xi)}_{(d\vec\xi/dt)_{\rm prostor}}` },
+          { reason: "Relativno hitrost odvajamo s transportnim izrekom in definicijo relativnega pospeška.", rule: "transportni izrek", tex: h`\left(\frac{d\vec v_{\rm rel}}{dt}\right)_{\rm prostor}=\underbrace{\left(\frac{d\vec v_{\rm rel}}{dt}\right)_{\rm telo}}_{\vec a_{\rm rel}}+\vec\omega\times\vec v_{\rm rel}=\vec a_{\rm rel}+\vec\omega\times\vec v_{\rm rel}` },
+          { reason: "Razpišemo oba odvoda; en člen ω×vrel pride iz odvajanja ξ, drugi iz odvajanja vrel.", tex: h`\vec a=\vec a_C+\dot{\vec\omega}\times\vec\xi+\vec\omega\times(\vec\omega\times\vec\xi)+\underbrace{\vec\omega\times\vec v_{\rm rel}+\vec\omega\times\vec v_{\rm rel}}_{2\vec\omega\times\vec v_{\rm rel}}+\vec a_{\rm rel}` },
+          { reason: "Združimo oba enaka člena; njuna vsota je Coriolisov člen.", tex: h`\boxed{\vec a=\vec a_C+\dot{\vec\omega}\times\vec\xi+\vec\omega\times(\vec\omega\times\vec\xi)+2\vec\omega\times\vec v_{\rm rel}+\vec a_{\rm rel}}` },
           { reason: "Materialna točka P je pritrjena na togo telo, zato se v telesnih koordinatah ne premika.", tex: h`\vec v_{\rm rel}=0,\qquad \vec a_{\rm rel}=0` },
           { reason: "Ostaneta kinematični formuli za poljubno točko togega telesa.", tex: h`\boxed{\vec v_P=\vec v_C+\vec\omega\times\vec\xi_P},\qquad \boxed{\vec a_P=\vec a_C+\dot{\vec\omega}\times\vec\xi_P+\vec\omega\times(\vec\omega\times\vec\xi_P)}` }
         ],
@@ -195,10 +196,10 @@
       },
       {
         title: "Iz sistema delcev do enačbe gibanja masnega središča",
-        goal: h`Izpeljati \(M\vec a_C=\vec F^{\rm ext}\) in pokazati, zakaj notranje sile izginejo.`,
+        goal: h`Iz zunanjih sil izračunamo pospešek masnega središča \(\vec a_C\).`,
         steps: [
-          { reason: "Začnemo z definicijo masnega središča; mase so konstantne.", tex: h`M\vec r_C=\sum_i m_i\vec r_i` },
-          { reason: "Enkrat odvajamo in dobimo skupno gibalno količino.", tex: h`M\vec v_C=\sum_i m_i\vec v_i=\vec P` },
+          { reason: "Začnemo z definicijo masnega središča in zapišemo predpostavko, da se mase delcev ne spreminjajo.", tex: h`M\vec r_C=\sum_i m_i\vec r_i,\qquad \dot m_i=0,\qquad \dot M=0` },
+          { reason: "Enkrat odvajamo; zaradi konstantnih mas ni dodatnih členov z dm/dt.", rule: "odvajanje konstantnega faktorja", tex: h`\frac d{dt}(M\vec r_C)=M\vec v_C=\sum_i m_i\vec v_i=\vec P` },
           { reason: "Še enkrat odvajamo.", tex: h`M\vec a_C=\sum_i m_i\vec a_i` },
           { reason: "Za vsak delec uporabimo drugi Newtonov zakon in ločimo zunanje ter notranje sile.", tex: h`m_i\vec a_i=\vec F_i^{\rm ext}+\sum_{j\ne i}\vec F_{ij}` },
           { reason: "Seštejemo enačbe vseh delcev.", tex: h`M\vec a_C=\sum_i\vec F_i^{\rm ext}+\sum_i\sum_{j\ne i}\vec F_{ij}` },
@@ -210,7 +211,7 @@
       },
       {
         title: "Iz definicije vrtilne količine do izreka o vrtilni količini",
-        goal: h`Izpeljati \(\dot{\vec L}_O=\vec N_O^{\rm ext}\) in navesti pogoj za izničenje notranjih navorov.`,
+        goal: h`Iz zunanjega navora izračunamo spremembo vrtilne količine \(d\vec L/dt\).`,
         steps: [
           { reason: "Naj bo O mirujoč pol v inercialnem sistemu.", tex: h`\vec L_O=\sum_i(\vec r_i-\vec r_O)\times m_i\vec v_i` },
           { reason: "Odvajamo s produktnim pravilom.", tex: h`\dot{\vec L}_O=\sum_i\vec v_i\times m_i\vec v_i+\sum_i(\vec r_i-\vec r_O)\times m_i\vec a_i` },
@@ -219,21 +220,27 @@
           { reason: "Notranja navora delcev i in j združimo v par in uporabimo Fji=−Fij.", tex: h`(\vec r_i-\vec r_O)\times\vec F_{ij}+(\vec r_j-\vec r_O)\times\vec F_{ji}=(\vec r_i-\vec r_j)\times\vec F_{ij}` },
           { reason: "Pri centralnih notranjih silah je sila vzporedna z veznico delcev, zato je parni notranji navor nič.", tex: h`\vec F_{ij}\parallel(\vec r_j-\vec r_i)\quad\Rightarrow\quad(\vec r_i-\vec r_j)\times\vec F_{ij}=0` },
           { reason: "Ostane rezultanta zunanjih navorov.", tex: h`\boxed{\dot{\vec L}_O=\vec N_O^{\rm ext}},\qquad \vec N_O^{\rm ext}=\sum_i(\vec r_i-\vec r_O)\times\vec F_i^{\rm ext}` },
-          { reason: "Za gibajoči se pol A na splošno nastane popravek s skupno gibalno količino.", tex: h`\frac{d\vec L_A}{dt}=\vec N_A^{\rm ext}-\vec v_A\times\vec P` },
+          { reason: "Za gibajoči se pol A znova začnemo z definicijo vrtilne količine.", tex: h`\vec L_A=\sum_i(\vec r_i-\vec r_A)\times m_i\vec v_i` },
+          { reason: "Definicijo odvajamo; odvod ročice je relativna hitrost vi−vA.", rule: "produktno pravilo", tex: h`\frac{d\vec L_A}{dt}=\sum_i(\vec v_i-\vec v_A)\times m_i\vec v_i+\sum_i(\vec r_i-\vec r_A)\times m_i\vec a_i` },
+          { reason: "Členi vi×mivi so nič, preostanek prve vsote pa vsebuje skupno gibalno količino.", tex: h`\sum_i(\vec v_i-\vec v_A)\times m_i\vec v_i=-\vec v_A\times\sum_i m_i\vec v_i=-\vec v_A\times\vec P` },
+          { reason: "Druga vsota je po izničenju notranjih navorov zunanji navor okoli A.", tex: h`\sum_i(\vec r_i-\vec r_A)\times m_i\vec a_i=\vec N_A^{\rm ext}` },
+          { reason: "Za gibajoči se pol zato nastane popravek s skupno gibalno količino.", tex: h`\boxed{\frac{d\vec L_A}{dt}=\vec N_A^{\rm ext}-\vec v_A\times\vec P}` },
           { reason: "Pri A=C je P=MvC, zato je popravek nič.", tex: h`\vec v_C\times\vec P=\vec v_C\times M\vec v_C=0\quad\Rightarrow\quad\boxed{\left(\frac{d\vec L_C}{dt}\right)_{\rm prostor}=\vec N_C^{\rm ext}}` }
         ],
         result: "Za izničenje notranjih navorov tretji Newtonov zakon ni dovolj sam: notranje sile morajo delovati vzdolž veznice delcev."
       },
       {
         title: "Od vrtilne količine togega telesa do vztrajnostnega tenzorja",
-        goal: h`Izpeljati \(\vec L_C=J_C\vec\omega\), komponente J in pomen glavnih osi.`,
+        goal: h`Iz razporeditve mase sestavimo \(J_C\) in izračunamo \(\vec L_C=J_C\vec\omega\).`,
         steps: [
           { reason: "Pri zveznem telesu seštevanje nadomestimo z integralom po masi.", tex: h`\vec L_C=\int_B\vec\xi\times(\vec v-\vec v_C)\,dm` },
           { reason: "Pri togem telesu je relativna hitrost masnega elementa ω×ξ.", tex: h`\vec v-\vec v_C=\vec\omega\times\vec\xi` },
           { reason: "Vstavimo jo v definicijo vrtilne količine.", tex: h`\vec L_C=\int_B\vec\xi\times(\vec\omega\times\vec\xi)\,dm` },
-          { reason: "Uporabimo identiteto za dvojni vektorski produkt.", tex: h`\vec\xi\times(\vec\omega\times\vec\xi)=|\vec\xi|^2\vec\omega-(\vec\xi\cdot\vec\omega)\vec\xi` },
+          { reason: "Uporabimo identiteto BAC−CAB za dvojni vektorski produkt.", rule: "identiteta BAC−CAB", tex: h`\vec\xi\times(\vec\omega\times\vec\xi)=\vec\omega(\vec\xi\cdot\vec\xi)-\vec\xi(\vec\xi\cdot\vec\omega)=|\vec\xi|^2\vec\omega-(\vec\xi\cdot\vec\omega)\vec\xi` },
           { reason: "Drugi člen zapišemo s tenzorskim produktom.", tex: h`(\vec\xi\otimes\vec\xi)\vec\omega=\vec\xi(\vec\xi\cdot\vec\omega)` },
-          { reason: "Celoten izraz je linearen v ω, zato koeficient pred ω definiramo kot J.", tex: h`\boxed{J_C=\int_B\left(|\vec\xi|^2I-\vec\xi\otimes\vec\xi\right)dm},\qquad \boxed{\vec L_C=J_C\vec\omega}` },
+          { reason: "Oba člena zapišemo kot isto linearno preslikavo, ki deluje na ω.", tex: h`|\vec\xi|^2\vec\omega-(\vec\xi\cdot\vec\omega)\vec\xi=\left(|\vec\xi|^2I-\vec\xi\otimes\vec\xi\right)\vec\omega` },
+          { reason: "Ker ω pri danem času ni integracijska spremenljivka, ga izpostavimo iz integrala; preostalo preslikavo definiramo kot J.", rule: "linearnost integrala", tex: h`\vec L_C=\int_B\left(|\vec\xi|^2I-\vec\xi\otimes\vec\xi\right)\vec\omega\,dm=\underbrace{\left[\int_B\left(|\vec\xi|^2I-\vec\xi\otimes\vec\xi\right)dm\right]}_{J_C}\vec\omega` },
+          { reason: "S tem dobimo definicijo vztrajnostnega tenzorja in zvezo za vrtilno količino.", tex: h`\boxed{J_C=\int_B\left(|\vec\xi|^2I-\vec\xi\otimes\vec\xi\right)dm},\qquad \boxed{\vec L_C=J_C\vec\omega}` },
           { reason: "Vztrajnostni moment okoli osi e dobimo tako, da J projiciramo na isto smer.", tex: h`J_{\vec e}=\vec e\cdot J_C\vec e=\int_B\left(|\vec\xi|^2-(\vec e\cdot\vec\xi)^2\right)dm=\int_B r_\perp^2\,dm` },
           { reason: "V ortonormirani bazi preberemo komponente.", tex: h`\boxed{J_{ij}=\int_B\left(|\vec\xi|^2\delta_{ij}-\xi_i\xi_j\right)dm}` },
           { reason: "Diagonalni in izvendiagonalni členi imajo konkretno obliko.", tex: h`J_{11}=\int_B(\xi_2^2+\xi_3^2)dm,\qquad J_{12}=-\int_B\xi_1\xi_2\,dm` },
@@ -244,14 +251,14 @@
       },
       {
         title: "Razcep kinetične energije na translacijo in rotacijo",
-        goal: h`Izpeljati \(T=\tfrac12M|\vec v_C|^2+\tfrac12\vec\omega\cdot J_C\vec\omega\).`,
+        goal: h`Celotno kinetično energijo razdelimo na translacijo masnega središča in rotacijo okoli njega.`,
         steps: [
           { reason: "Kinetično energijo zveznega telesa dobimo s seštevanjem energij masnih elementov.", tex: h`T=\frac12\int_B|\vec v|^2dm` },
           { reason: "Vstavimo hitrost točke togega telesa.", tex: h`\vec v=\vec v_C+\vec\omega\times\vec\xi` },
           { reason: "Kvadrat vsote razširimo brez preskoka.", tex: h`T=\frac12\int_B\left(|\vec v_C|^2+2\vec v_C\cdot(\vec\omega\times\vec\xi)+|\vec\omega\times\vec\xi|^2\right)dm` },
           { reason: "Prvi člen vsebuje konstantni vC in integral mase.", tex: h`\frac12\int_B|\vec v_C|^2dm=\frac12M|\vec v_C|^2` },
-          { reason: "Mešani člen je nič zaradi definicije masnega središča.", tex: h`\int_B\vec v_C\cdot(\vec\omega\times\vec\xi)dm=\vec v_C\cdot\left(\vec\omega\times\int_B\vec\xi\,dm\right)=0` },
-          { reason: "Kvadrat vektorskega produkta zapišemo s tenzorjem J.", tex: h`|\vec\omega\times\vec\xi|^2=\vec\omega\cdot\left(|\vec\xi|^2I-\vec\xi\otimes\vec\xi\right)\vec\omega` },
+          { reason: "Mešani člen preuredimo z identiteto za mešani produkt in je nič zaradi definicije masnega središča.", rule: "cikličnost mešanega produkta", tex: h`\int_B\vec v_C\cdot(\vec\omega\times\vec\xi)dm=(\vec v_C\times\vec\omega)\cdot\int_B\vec\xi\,dm=0` },
+          { reason: "Kvadrat vektorskega produkta razpišemo in prepoznamo isto preslikavo, ki definira J.", rule: "Lagrangeeva identiteta", tex: h`|\vec\omega\times\vec\xi|^2=|\vec\omega|^2|\vec\xi|^2-(\vec\omega\cdot\vec\xi)^2=\vec\omega\cdot\left(|\vec\xi|^2I-\vec\xi\otimes\vec\xi\right)\vec\omega` },
           { reason: "Integral zadnjega člena je rotacijska energija.", tex: h`\frac12\int_B|\vec\omega\times\vec\xi|^2dm=\frac12\vec\omega\cdot J_C\vec\omega` },
           { reason: "Seštejemo translacijski in rotacijski del.", tex: h`\boxed{T=\frac12M|\vec v_C|^2+\frac12\vec\omega\cdot J_C\vec\omega}` }
         ],
@@ -259,31 +266,36 @@
       },
       {
         title: "Steinerjev izrek brez skritega razširjanja",
-        goal: "Prenesti znani vztrajnostni tenzor iz masnega središča C na drug pol O.",
+        goal: h`Vztrajnostni tenzor prestavimo iz (C) v (O), moment pa z osi skozi (C) na vzporedno os skozi (O).`,
         steps: [
           { reason: "Vektor od O do masnega elementa razstavimo na vektor od O do C in vektor od C do elementa.", tex: h`\vec\xi_O=\vec d+\vec\xi,\qquad \vec d=\vec r_C-\vec r_O` },
           { reason: "Začnemo z definicijo tenzorja okoli O.", tex: h`J_O=\int_B\left(|\vec d+\vec\xi|^2I-(\vec d+\vec\xi)\otimes(\vec d+\vec\xi)\right)dm` },
           { reason: "Razširimo kvadrat in tenzorski produkt.", tex: h`|\vec d+\vec\xi|^2I=(d^2+2\vec d\cdot\vec\xi+\xi^2)I` },
           { reason: "Tudi drugi del razširimo po členih.", tex: h`(\vec d+\vec\xi)\otimes(\vec d+\vec\xi)=\vec d\otimes\vec d+\vec d\otimes\vec\xi+\vec\xi\otimes\vec d+\vec\xi\otimes\vec\xi` },
+          { reason: "Obe razširitvi vstavimo in člene združimo v čisti del ξ, čisti del d ter mešani del.", tex: h`\begin{aligned}J_O={}&\int_B(\xi^2I-\vec\xi\otimes\vec\xi)dm+\int_B(d^2I-\vec d\otimes\vec d)dm\\&+\int_B\left[2(\vec d\cdot\vec\xi)I-\vec d\otimes\vec\xi-\vec\xi\otimes\vec d\right]dm\end{aligned}` },
           { reason: "Člene, ki vsebujejo samo ξ, prepoznamo kot JC.", tex: h`\int_B(\xi^2I-\vec\xi\otimes\vec\xi)dm=J_C` },
           { reason: "Vsi mešani členi izginejo, ker je prvi masni moment okoli C nič.", tex: h`\int_B\vec\xi\,dm=0\quad\Rightarrow\quad\int_B(2\vec d\cdot\vec\xi)I\,dm=\int_B\vec d\otimes\vec\xi\,dm=\int_B\vec\xi\otimes\vec d\,dm=0` },
           { reason: "Členi, ki vsebujejo samo d, se pomnožijo s skupno maso.", tex: h`\int_B(d^2I-\vec d\otimes\vec d)dm=M(d^2I-\vec d\otimes\vec d)` },
           { reason: "Dobimo tenzorski Steinerjev izrek.", tex: h`\boxed{J_O=J_C+M\left(d^2I-\vec d\otimes\vec d\right)}` },
-          { reason: "Za vzporedni osi ostane znana skalarna oblika.", tex: h`\boxed{J_O^{(\vec e)}=J_C^{(\vec e)}+Md_\perp^2}` }
+          { reason: "Tenzorsko enačbo projiciramo na enotsko smer e vzporednih osi.", rule: "projekcija na os", tex: h`\vec e\cdot M(d^2I-\vec d\otimes\vec d)\vec e=M\left[d^2-(\vec e\cdot\vec d)^2\right]=Md_\perp^2` },
+          { reason: "Za vzporedni osi tako dobimo znano skalarno obliko.", tex: h`\boxed{J_O^{(\vec e)}=J_C^{(\vec e)}+Md_\perp^2}` }
         ],
         result: "Steinerjev izrek velja za vzporedne osi; d⊥ je pravokotna razdalja med njima."
       },
       {
         title: "Od izreka o vrtilni količini do Eulerjevih enačb",
-        goal: "Izpeljati vektorsko Eulerjevo enačbo in jo razpisati v glavnih telesnih oseh.",
+        goal: h`Iz navora in vztrajnostnih momentov izračunamo časovno spreminjanje komponent \(\vec\omega\).`,
         steps: [
           { reason: "Za pol C velja izrek o vrtilni količini v inercialnem prostoru.", tex: h`\vec N_C^{\rm ext}=\left(\frac{d\vec L_C}{dt}\right)_{\rm prostor}` },
           { reason: "Vrtilno količino zapišemo v telesni bazi, kjer so komponente J konstantne.", tex: h`\vec L_C=J_C\vec\omega` },
           { reason: "Prostorski odvod pretvorimo s transportnim izrekom.", tex: h`\left(\frac{d\vec L_C}{dt}\right)_{\rm prostor}=\left(\frac{d\vec L_C}{dt}\right)_{\rm telo}+\vec\omega\times\vec L_C` },
-          { reason: "Ker je telo togo in je baza pritrjena nanj, je matrika J v tej bazi časovno konstantna.", tex: h`\left(\frac{d\vec L_C}{dt}\right)_{\rm telo}=\frac d{dt}(J_C\vec\omega)_{\rm telo}=J_C\dot{\vec\omega}` },
+          { reason: "Piko pri komponentah ω razumemo kot telesni odvod; transportni popravek za ω samo je nič.", rule: "transportni izrek", tex: h`\left(\frac{d\vec\omega}{dt}\right)_{\rm prostor}=\left(\frac{d\vec\omega}{dt}\right)_{\rm telo}+\vec\omega\times\vec\omega=\left(\frac{d\vec\omega}{dt}\right)_{\rm telo}=\dot{\vec\omega}` },
+          { reason: "Ker je telo togo in je baza pritrjena nanj, je matrika J v tej bazi časovno konstantna.", rule: "produktno pravilo", tex: h`\left(\frac{d\vec L_C}{dt}\right)_{\rm telo}=\frac d{dt}(J_C\vec\omega)_{\rm telo}=J_C\dot{\vec\omega}` },
           { reason: "Vstavimo L=Jω in dobimo Eulerjevo vektorsko enačbo.", tex: h`\boxed{J_C\dot{\vec\omega}+\vec\omega\times(J_C\vec\omega)=\vec N_C^{\rm ext}}` },
           { reason: "Izberemo glavne telesne osi, v katerih je J diagonalna.", tex: h`J_C=\operatorname{diag}(J_1,J_2,J_3),\qquad J_C\vec\omega=(J_1\omega_1,J_2\omega_2,J_3\omega_3)` },
-          { reason: "Izračunamo žiroskopski člen z vektorskim produktom.", tex: h`\vec\omega\times(J\vec\omega)=\big((J_3-J_2)\omega_2\omega_3,(J_1-J_3)\omega_3\omega_1,(J_2-J_1)\omega_1\omega_2\big)` },
+          { reason: "Tudi navor in časovni odvod kotne hitrosti razpišemo po istih glavnih telesnih oseh.", tex: h`\vec N_C^{\rm ext}=N_1\vec e_1+N_2\vec e_2+N_3\vec e_3,\qquad \dot{\vec\omega}=\dot\omega_1\vec e_1+\dot\omega_2\vec e_2+\dot\omega_3\vec e_3` },
+          { reason: "Najprej brez preskoka izračunamo prvo komponento žiroskopskega vektorskega produkta.", rule: "vektorski produkt po komponentah", tex: h`\big[\vec\omega\times(J_C\vec\omega)\big]_1=\omega_2J_3\omega_3-\omega_3J_2\omega_2=(J_3-J_2)\omega_2\omega_3` },
+          { reason: "Ciklično dobimo še drugi in tretji žiroskopski člen.", tex: h`\vec\omega\times(J_C\vec\omega)=\big((J_3-J_2)\omega_2\omega_3,(J_1-J_3)\omega_3\omega_1,(J_2-J_1)\omega_1\omega_2\big)` },
           { reason: "Prva komponenta vektorske enačbe je prva Eulerjeva enačba.", tex: h`\boxed{J_1\dot\omega_1+(J_3-J_2)\omega_2\omega_3=N_1}` },
           { reason: "Druga komponenta je druga Eulerjeva enačba.", tex: h`\boxed{J_2\dot\omega_2+(J_1-J_3)\omega_3\omega_1=N_2}` },
           { reason: "Tretja komponenta je tretja Eulerjeva enačba.", tex: h`\boxed{J_3\dot\omega_3+(J_2-J_1)\omega_1\omega_2=N_3}` }
@@ -292,11 +304,12 @@
       },
       {
         title: "Kako se navor spremeni ob premiku pola?",
-        goal: h`Izpeljati \(\vec N_{O'}=\vec N_O+(\vec r_O-\vec r_{O'})\times\vec R\).`,
+        goal: h`Izračunamo navor okoli novega pola brez ponovnega seštevanja vseh sil.`,
         steps: [
           { reason: "Navor istega sistema sil najprej zapišemo okoli novega pola O′.", tex: h`\vec N_{O'}=\sum_k(\vec r_k-\vec r_{O'})\times\vec F_k` },
           { reason: "Novo ročico razstavimo na staro ročico in vektor med poloma.", tex: h`\vec r_k-\vec r_{O'}=(\vec r_k-\vec r_O)+(\vec r_O-\vec r_{O'})` },
-          { reason: "Vstavimo razcep in zaradi linearnosti vektorskega produkta ločimo vsoti.", tex: h`\vec N_{O'}=\sum_k(\vec r_k-\vec r_O)\times\vec F_k+(\vec r_O-\vec r_{O'})\times\sum_k\vec F_k` },
+          { reason: "V vsaki posamezni sili uporabimo distributivnost vektorskega produkta.", rule: "distributivnost vektorskega produkta", tex: h`\big[(\vec r_k-\vec r_O)+(\vec r_O-\vec r_{O'})\big]\times\vec F_k=(\vec r_k-\vec r_O)\times\vec F_k+(\vec r_O-\vec r_{O'})\times\vec F_k` },
+          { reason: "Seštejemo po k in iz druge vsote izpostavimo vektor med poloma, ker ni odvisen od k.", rule: "linearnost vsote", tex: h`\vec N_{O'}=\sum_k(\vec r_k-\vec r_O)\times\vec F_k+(\vec r_O-\vec r_{O'})\times\sum_k\vec F_k` },
           { reason: "Prva vsota je stari navor, druga vsota sil pa rezultanta.", tex: h`\vec N_O=\sum_k(\vec r_k-\vec r_O)\times\vec F_k,\qquad \vec R=\sum_k\vec F_k` },
           { reason: "Dobimo pravilo za spremembo pola.", tex: h`\boxed{\vec N_{O'}=\vec N_O+(\vec r_O-\vec r_{O'})\times\vec R}` }
         ],

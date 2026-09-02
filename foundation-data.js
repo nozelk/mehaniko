@@ -94,77 +94,93 @@
       derivations: [
         {
           title: "Iz skalarnega polja do vektorskega polja sile",
-          goal: h`Pokazati \(\vec F=-\nabla U\) in nato enodimenzionalni zapis \(F=-U'\).`,
+          goal: h`Iz potenciala \(U\) določimo velikost in smer sile \(\vec F\).`,
           steps: [
             { reason: "Potencialna energija je funkcija treh koordinat.", tex: h`U=U(x,y,z)` },
-            { reason: "Njen diferencial zapišemo s krajevnimi odvodi.", tex: h`dU=\frac{\partial U}{\partial x}dx+\frac{\partial U}{\partial y}dy+\frac{\partial U}{\partial z}dz=\nabla U\cdot d\vec r` },
-            { reason: "Majhno delo sile je skalarni produkt sile in premika.", tex: h`dA=\vec F\cdot d\vec r` },
-            { reason: "Definicija potencialne sile pravi, da njeno delo zmanjša potencialno energijo.", tex: h`dA=-dU` },
-            { reason: "Enačimo izraza; zveza mora veljati za vsak poljuben premik.", tex: h`\vec F\cdot d\vec r=-\nabla U\cdot d\vec r\quad\Rightarrow\quad \boxed{\vec F=-\nabla U}` },
+            { reason: "Poljubni majhen premik razpišemo po komponentah.", tex: h`d\vec r=dx\,\vec e_x+dy\,\vec e_y+dz\,\vec e_z` },
+            { reason: "Celotni diferencial potenciala zapišemo s krajevnimi odvodi.", rule: "celotni diferencial", tex: h`dU=\frac{\partial U}{\partial x}dx+\frac{\partial U}{\partial y}dy+\frac{\partial U}{\partial z}dz=\nabla U\cdot d\vec r` },
+            { reason: "Majhno delo sile razpišemo po istih komponentah.", rule: "definicija dela", tex: h`dA=\vec F\cdot d\vec r=F_xdx+F_ydy+F_zdz` },
+            { reason: "Definicija potencialne sile pravi, da njeno delo zmanjša potencialno energijo.", rule: "definicija potencialne energije", tex: h`dA=-dU` },
+            { reason: "Enačimo delo in spremembo potenciala ter vse prestavimo na levo.", tex: h`(\vec F+\nabla U)\cdot d\vec r=(F_x+U_x)dx+(F_y+U_y)dy+(F_z+U_z)dz=0` },
+            { reason: "Zveza velja za vsak neodvisen dx, dy in dz, zato mora izginiti vsak koeficient.", rule: "enačenje komponent", tex: h`F_x=-U_x=-\frac{\partial U}{\partial x},\qquad F_y=-U_y=-\frac{\partial U}{\partial y},\qquad F_z=-U_z=-\frac{\partial U}{\partial z}` },
+            { reason: "Tri komponentne enačbe združimo v vektorski zapis.", tex: h`\boxed{\vec F=-\nabla U}` },
             { reason: "Če je dovoljeno gibanje samo vzdolž osi x, ostane ena komponenta.", tex: h`\vec F=F_x\vec e_x,\quad \nabla U=\frac{dU}{dx}\vec e_x\quad\Rightarrow\quad\boxed{F_x=-\frac{dU}{dx}}` }
           ],
           result: "Gradient pokaže navzgor, sila pa zaradi minusa navzdol po energijski pokrajini."
         },
         {
           title: "Iz dela do izreka o kinetični energiji",
-          goal: h`Pokazati, da je delo rezultante sil enako spremembi kinetične energije: \(A_{1\to2}=T_2-T_1\).`,
+          goal: "Izračunamo, kako opravljeno delo spremeni kinetično energijo telesa.",
           steps: [
             { reason: "Začnemo z definicijo dela vzdolž poti.", tex: h`A_{1\to2}=\int_1^2\vec F\cdot d\vec r` },
-            { reason: "Uporabimo Newtonov zakon in zvezo d r = v dt.", tex: h`A_{1\to2}=\int_{t_1}^{t_2}m\vec a\cdot\vec v\,dt` },
-            { reason: "Skalarni produkt pospeška in hitrosti je polovica odvoda kvadrata hitrosti.", tex: h`\vec a\cdot\vec v=\frac{d\vec v}{dt}\cdot\vec v=\frac12\frac d{dt}(v^2)` },
-            { reason: "Integriramo časovni odvod.", tex: h`A_{1\to2}=\int_{t_1}^{t_2}\frac d{dt}\!\left(\frac12mv^2\right)dt` },
-            { reason: "Dobimo razliko končne in začetne kinetične energije.", tex: h`\boxed{A_{1\to2}=\frac12mv_2^2-\frac12mv_1^2=T_2-T_1}` },
+            { reason: "Pot parametriziramo s časom, zato je diferencial poti hitrost krat dt.", rule: "parametrizacija poti", tex: h`\vec r=\vec r(t),\qquad d\vec r=\frac{d\vec r}{dt}dt=\vec v\,dt` },
+            { reason: "Integral po poti prepišemo v časovni integral.", rule: "zamenjava spremenljivke", tex: h`A_{1\to2}=\int_{t_1}^{t_2}\vec F\cdot\vec v\,dt` },
+            { reason: "Uporabimo drugi Newtonov zakon in definicijo pospeška.", tex: h`\vec F=m\vec a=m\frac{d\vec v}{dt}\quad\Rightarrow\quad A_{1\to2}=\int_{t_1}^{t_2}m\vec a\cdot\vec v\,dt` },
+            { reason: "Produktno pravilo za skalarni produkt v·v da faktor dve.", rule: "produktno pravilo", tex: h`\frac d{dt}(\vec v\cdot\vec v)=\vec a\cdot\vec v+\vec v\cdot\vec a=2\vec a\cdot\vec v` },
+            { reason: "Integrand je zato časovni odvod kinetične energije.", tex: h`m\vec a\cdot\vec v=\frac d{dt}\!\left(\frac12m\,\vec v\cdot\vec v\right)=\frac{dT}{dt}` },
+            { reason: "Integral odvoda je razlika končne in začetne vrednosti.", rule: "temeljni izrek integralskega računa", tex: h`A_{1\to2}=\int_{t_1}^{t_2}\frac{dT}{dt}dt=T(t_2)-T(t_1)` },
+            { reason: "Vstavimo T = mv²/2 in dobimo izrek o kinetični energiji.", tex: h`\boxed{A_{1\to2}=\frac12mv_2^2-\frac12mv_1^2=T_2-T_1}` },
             { reason: "Za potencialno silo je isto delo enako U1−U2; enačenje da ohranitev mehanske energije.", tex: h`T_2-T_1=U_1-U_2\quad\Rightarrow\quad\boxed{T_1+U_1=T_2+U_2}` }
           ],
           result: "Energijski zakon ni nova predpostavka: za potencialno silo ga izpeljemo iz Newtonovega zakona in definicije dela."
         },
         {
           title: "Iz Newtonove enačbe do ohranitve energije",
-          goal: h`Izpeljati \(\tfrac12m\dot x^2+U(x)=E\).`,
+          goal: h`Iz enačbe gibanja dobimo ohranjeno mehansko energijo \(E=T+U\).`,
           steps: [
             { reason: "Začnemo z drugim Newtonovim zakonom in potencialno silo.", tex: h`m\ddot x=F(x)=-U'(x)` },
-            { reason: "Obe strani pomnožimo s hitrostjo. To omogoči verižno pravilo.", tex: h`m\ddot x\,\dot x=-U'(x)\dot x` },
-            { reason: "Leva stran je časovni odvod kinetične energije.", tex: h`m\ddot x\dot x=\frac d{dt}\!\left(\frac12m\dot x^2\right)` },
-            { reason: "Desno uporabimo verižno pravilo za sestavljeno funkcijo U(x(t)).", tex: h`U'(x)\dot x=\frac{dU(x(t))}{dt}` },
-            { reason: "Oba odvoda prestavimo na isto stran.", tex: h`\frac d{dt}\!\left(\frac12m\dot x^2+U(x)\right)=0` },
-            { reason: "Količina z ničelnim časovnim odvodom je konstanta.", tex: h`\boxed{\frac12m\dot x^2+U(x)=E=\mathrm{konst.}}` }
+            { reason: "Obe strani pomnožimo s hitrostjo.", tex: h`m\ddot x\,\dot x=-U'(x)\dot x` },
+            { reason: "Odvod kvadrata hitrosti izračunamo izrecno.", rule: "verižno pravilo", tex: h`\frac d{dt}(\dot x^2)=2\dot x\ddot x\quad\Rightarrow\quad m\ddot x\dot x=\frac d{dt}\!\left(\frac12m\dot x^2\right)=\frac{dT}{dt}` },
+            { reason: "Ker je x funkcija časa, tudi potencial odvajamo po verižnem pravilu.", rule: "verižno pravilo", tex: h`\frac{d}{dt}U(x(t))=\frac{dU}{dx}\frac{dx}{dt}=U'(x)\dot x=\frac{dU}{dt}` },
+            { reason: "Newtonova enačba zato pove, da povečanje T pomeni enako zmanjšanje U.", tex: h`\frac{dT}{dt}=-\frac{dU}{dt}` },
+            { reason: "Oba odvoda prestavimo na isto stran in ju združimo.", rule: "linearnost odvoda", tex: h`\frac{dT}{dt}+\frac{dU}{dt}=\frac d{dt}(T+U)=0` },
+            { reason: "Količina z ničelnim časovnim odvodom je konstantna mehanska energija.", tex: h`\boxed{\frac12m\dot x^2+U(x)=E},\qquad E=\frac12m\dot x_i^2+U(x_i)=\mathrm{konst.}` }
           ],
           result: "Začetni pogoji določijo vrednost E; med gibanjem se spreminjata T in U, ne pa njuna vsota."
         },
         {
           title: "Iz energije do dovoljenega območja, hitrosti in časa",
-          goal: "Iz energijske enačbe prebrati gibanje in dobiti kvadraturo.",
+          goal: "Iz E določimo, kje se telo lahko giblje, njegovo hitrost in čas gibanja.",
           steps: [
-            { reason: "Potencial prestavimo na desno.", tex: h`\frac12m\dot x^2=E-U(x)` },
+            { reason: "Energijo določimo iz začetne lege in začetne hitrosti.", tex: h`E=\frac12m\dot x_i^2+U(x_i)` },
+            { reason: "V energijski enačbi potencial prestavimo na desno.", tex: h`\frac12m\dot x^2=E-U(x)` },
             { reason: "Leva stran je kinetična energija in ne more biti negativna.", tex: h`E-U(x)\ge0\quad\Longleftrightarrow\quad U(x)\le E` },
-            { reason: "Izoliramo hitrost; predznak pove smer gibanja.", tex: h`\dot x=\pm\sqrt{\frac2m\,[E-U(x)]}` },
-            { reason: "Uporabimo \(\dot x=dx/dt\) in ločimo spremenljivki.", tex: h`dt=\pm\sqrt{\frac m2}\,\frac{dx}{\sqrt{E-U(x)}}` },
-            { reason: "Integriramo od začetnega stanja do trenutne lege.", tex: h`\boxed{t-t_i=\pm\sqrt{\frac m2}\int_{x_i}^{x}\frac{d\xi}{\sqrt{E-U(\xi)}}}` }
+            { reason: "Najprej izrazimo kvadrat hitrosti.", tex: h`\dot x^2=\frac2m[E-U(x)]` },
+            { reason: "Koren ima dve veji: plus za naraščajoči x in minus za padajoči x.", tex: h`\dot x=\frac{dx}{dt}=\pm\sqrt{\frac2m[E-U(x)]}` },
+            { reason: "Na odseku z izbrano smerjo enačbo obrnemo in dobimo dt/dx.", rule: "ločitev spremenljivk", tex: h`\frac{dt}{dx}=\pm\sqrt{\frac m2}\frac1{\sqrt{E-U(x)}}` },
+            { reason: "Pomnožimo z dx, da je čas na eni strani in lega na drugi.", rule: "ločitev spremenljivk", tex: h`dt=\pm\sqrt{\frac m2}\,\frac{dx}{\sqrt{E-U(x)}}` },
+            { reason: "Integriramo čas od ti do t in lego od xi do x; ξ je samo pomožna integracijska spremenljivka.", rule: "določeni integral", tex: h`\int_{t_i}^{t}d\tau=\pm\sqrt{\frac m2}\int_{x_i}^{x}\frac{d\xi}{\sqrt{E-U(\xi)}}` },
+            { reason: "Dobimo čas prihoda do lege x na izbrani veji gibanja.", tex: h`\boxed{t-t_i=\pm\sqrt{\frac m2}\int_{x_i}^{x}\frac{d\xi}{\sqrt{E-U(\xi)}}}` }
           ],
           result: "Ta integral je kvadratura: praviloma najprej dobimo t kot funkcijo x, nato zvezo po potrebi obrnemo."
         },
         {
           title: "Iz kvadrature do periode nihanja",
-          goal: h`Izpeljati \(T(E)=\sqrt{2m}\int_a^b dx/\sqrt{E-U(x)}\).`,
+          goal: "Izračunamo čas enega celotnega nihaja med obračališčema.",
           steps: [
             { reason: "Naj bosta a in b zaporedni obračališči.", tex: h`U(a)=U(b)=E` },
-            { reason: "Za pot od a do b izberemo pozitivno smer.", tex: h`t_{a\to b}=\sqrt{\frac m2}\int_a^b\frac{dx}{\sqrt{E-U(x)}}` },
-            { reason: "Cel nihaj vsebuje še enako dolgo pot nazaj od b do a.", tex: h`T=2t_{a\to b}` },
+            { reason: "Na poti od a do b je x naraščajoč, zato uporabimo pozitivno vejo hitrosti.", tex: h`t_{a\to b}=\sqrt{\frac m2}\int_a^b\frac{dx}{\sqrt{E-U(x)}}` },
+            { reason: "Na poti nazaj je hitrost negativna, zato v enačbi za dt nastopi minus.", tex: h`dt=-\sqrt{\frac m2}\frac{dx}{\sqrt{E-U(x)}}` },
+            { reason: "Meji povratnega integrala sta b in a; minus in obrat mej se izničita.", rule: "zamenjava mej integrala", tex: h`t_{b\to a}=-\sqrt{\frac m2}\int_b^a\frac{dx}{\sqrt{E-U(x)}}=\sqrt{\frac m2}\int_a^b\frac{dx}{\sqrt{E-U(x)}}` },
+            { reason: "Cel nihaj je pot od a do b in nato nazaj od b do a.", tex: h`T=t_{a\to b}+t_{b\to a}=2t_{a\to b}` },
             { reason: "Združimo faktorja.", tex: h`\boxed{T(E)=\sqrt{2m}\int_a^b\frac{dx}{\sqrt{E-U(x)}}}` }
           ],
           result: "Pri splošnem potencialu je perioda odvisna od energije oziroma amplitude."
         },
         {
           title: "Taylorjev razvoj in majhna nihanja",
-          goal: "Pokazati, zakaj je gladka potencialna jama blizu minimuma harmonični oscilator.",
+          goal: "Potencial ob minimumu približamo s parabolo ter dobimo frekvenco in periodo majhnih nihanj.",
           steps: [
-            { reason: "Odmik od ravnovesja označimo z eta.", tex: h`\eta=x-x_0` },
-            { reason: "Potencial razvijemo okoli x0.", tex: h`U(x_0+\eta)=U(x_0)+U'(x_0)\eta+\frac12U''(x_0)\eta^2+O(\eta^3)` },
-            { reason: "V ravnovesju je sila nič, zato izgine linearni člen.", tex: h`F(x_0)=-U'(x_0)=0` },
+            { reason: "Naj bo x0 neizrojen stabilni minimum: prvi odvod izgine, drugi pa je strogo pozitiven.", tex: h`U'(x_0)=0,\qquad U''(x_0)>0` },
+            { reason: "Odmik od ravnovesja označimo z eta; ker je x0 konstanta, se drugi odvod ne spremeni.", tex: h`x=x_0+\eta,\qquad \dot x=\dot\eta,\qquad\ddot x=\ddot\eta` },
+            { reason: "Potencial razvijemo okoli x0 do drugega reda.", rule: "Taylorjev razvoj", tex: h`U(x_0+\eta)=U(x_0)+U'(x_0)\eta+\frac12U''(x_0)\eta^2+O(\eta^3)` },
+            { reason: "V ravnovesju izgine linearni člen.", tex: h`U'(x_0)=0\quad\Rightarrow\quad U(x_0+\eta)=U(x_0)+\frac12U''(x_0)\eta^2+O(\eta^3)` },
             { reason: "Za majhen odmik zanemarimo kubične in višje člene.", tex: h`U(x)\approx U(x_0)+\frac12U''(x_0)(x-x_0)^2` },
-            { reason: "Odvajanje da linearno povratno silo.", tex: h`F\approx-U''(x_0)\eta` },
-            { reason: "Vstavimo v Newtonovo enačbo.", tex: h`m\ddot\eta+U''(x_0)\eta=0` },
-            { reason: "Primerjamo z enačbo harmoničnega oscilatorja.", tex: h`\boxed{\omega_0=\sqrt{\frac{U''(x_0)}m}},\qquad\boxed{T_0=2\pi\sqrt{\frac m{U''(x_0)}}}` }
+            { reason: "Približek odvajamo po x in uporabimo F = −U′.", rule: "odvajanje Taylorjevega približka", tex: h`U'(x)\approx U''(x_0)(x-x_0)=U''(x_0)\eta\quad\Rightarrow\quad F\approx-U''(x_0)\eta` },
+            { reason: "Povratno silo vstavimo v Newtonovo enačbo in delimo z m.", tex: h`m\ddot\eta=-U''(x_0)\eta\quad\Rightarrow\quad\ddot\eta+\frac{U''(x_0)}m\eta=0` },
+            { reason: "Primerjamo s standardno enačbo harmoničnega oscilatorja.", tex: h`\ddot\eta+\omega_0^2\eta=0\quad\Rightarrow\quad\boxed{\omega_0=\sqrt{\frac{U''(x_0)}m}}` },
+            { reason: "Standardna rešitev niha sinusno; amplitudo in fazo določita začetna pogoja.", rule: "rešitev harmoničnega oscilatorja", tex: h`\eta(t)=A\cos(\omega_0t+\delta),\qquad x(t)=x_0+A\cos(\omega_0t+\delta)` },
+            { reason: "Čas enega obrata faze je 2π/ω0.", tex: h`\boxed{T_0=\frac{2\pi}{\omega_0}=2\pi\sqrt{\frac m{U''(x_0)}}}` }
           ],
           result: "Minimum mora imeti U″(x0)>0; tedaj je sila za majhen odmik usmerjena nazaj."
         }

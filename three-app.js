@@ -506,10 +506,11 @@
       </header>
       <div class="full-derivation-list">
         ${derivations.map((item, index) => `<details class="full-derivation" ${index === 0 ? "open" : ""}>
-          <summary><b>${String(index + 1).padStart(2, "0")}</b><span><strong>${escapeHtml(item.title || "Izpeljava")}</strong>${item.goal ? `<small>${richText(item.goal)}</small>` : ""}</span></summary>
+          <summary><b>${String(index + 1).padStart(2, "0")}</b><span><strong>${escapeHtml(item.title || "Izpeljava")}</strong>${item.goal ? `<span class="full-derivation-goal"><span class="full-derivation-goal-label">Cilj računa</span><span class="full-derivation-goal-text">${richText(item.goal)}</span></span>` : ""}</span></summary>
           <div class="full-derivation-body">
             <ol>
               ${asArray(item.steps).map(step => `<li>
+                ${step.rule ? `<div class="full-derivation-rule"><span>Uporabimo</span>${escapeHtml(step.rule)}</div>` : ""}
                 <p>${richText(step.reason || "")}</p>
                 ${step.tex ? `<div class="full-derivation-math">${M(step.tex, true)}</div>` : ""}
               </li>`).join("")}
