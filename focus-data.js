@@ -228,8 +228,8 @@
       short: "Iz ene krivulje U(x) prebereš dovoljeno gibanje, obrate, ravnovesja in periodo.",
       minutes: "7–8 min",
       accent: "#ff806f",
-      intro: h`Premočrtno gibanje je sistem z eno prostostno stopnjo \(x(t)\). Če je sila odvisna samo od lege, jo opišemo s potencialom \(U(x)\), zato se drugi Newtonov zakon spremeni v energijski problem, ki ga lahko skoraj v celoti razberemo iz grafa.`,
-      essence: h`Ključna ideja je \(\frac12m\dot x^2=E-U(x)\): razlika med celotno energijo in potencialom je kinetična energija.`,
+      intro: h`Premočrtno gibanje je sistem z eno prostostno stopnjo \(x(t)\). Če je rezultanta sil odvisna samo od lege, jo v eni dimenziji opišemo s potencialno energijo \(U(x)\), zato se drugi Newtonov zakon spremeni v energijski problem, ki ga lahko skoraj v celoti razberemo iz grafa.`,
+      essence: h`Ključna ideja je \(\frac12m\dot x^2=E-U(x)\): razlika med celotno mehansko energijo in potencialno energijo je kinetična energija.`,
       board: boards.straight,
       legend: [
         { color: "coral", label: "potencial U(x) in smer sile" },
@@ -251,11 +251,11 @@
         { title: "Ravnovesja", body: h`Ekstreme označi posebej: minimum je stabilen, maksimum nestabilen. Obvezno povej, da obračališče in ravnovesje nista ista stvar.` },
         { title: "Povečaj minimum", body: h`Ob minimumu skiciraj parabolo. To neposredno vodi do \(U\simeq U_0+\tfrac12U''(x_0)(x-x_0)^2\) in majhnih harmoničnih nihanj.` }
       ],
-      opening: h`»Premočrtno gibanje opišem z eno koordinato \(x(t)\). Za konservativno silo, ki je odvisna samo od lege, uvedem potencial z zvezo \(F(x)=-U'(x)\). Newtonova enačba je zato \(m\ddot x=-U'(x)\). Če jo pomnožim z \(\dot x\), dobim ohranitev energije. Iz grafa potenciala nato brez reševanja diferencialne enačbe določim dovoljena območja, obračališča, ravnovesja in ali je gibanje vezano.«`,
+      opening: h`»Premočrtno gibanje opišem z eno koordinato \(x(t)\). Za časovno neodvisno konservativno rezultanto sil uvedem potencialno energijo z zvezo \(F(x)=-U'(x)\). Newtonova enačba je zato \(m\ddot x=-U'(x)\). Če jo pomnožim z \(\dot x\), dobim ohranitev mehanske energije. Iz grafa potencialne energije nato brez reševanja diferencialne enačbe določim dovoljena območja, navadna obračališča, ravnovesja in ali je gibanje vezano.«`,
       intuition: [
-        { title: "Kaj potencial sploh je?", body: h`Potencial \(U(x)\) je energijska pokrajina. Telo se ne giblje po narisani krivulji; dejansko se giblje po osi \(x\). Višina krivulje samo pove, koliko energije je pri danem \(x\) shranjene kot potencialna energija.` },
+        { title: "Kaj potencial sploh je?", body: h`\(U(x)\) je potencialna energija sistema kot funkcija lege: vsaki legi \(x\) priredi eno število z enoto joule. Energijska pokrajina je le predstava; telo se ne giblje po narisani krivulji, ampak po osi \(x\).` },
         { title: "Zakaj sila kaže navzdol po potencialu?", body: h`Ker je \(F=-U'\). Če \(U\) z \(x\) narašča, je \(U'>0\) in sila kaže v negativno smer. Če \(U\) pada, sila kaže v pozitivno smer. Sistem zato potiska proti minimumu.` },
-        { title: "Kaj pomeni E − U?", body: h`To je kinetična energija. Velika navpična razlika med črto \(E\) in krivuljo \(U\) pomeni veliko hitrost; v presečišču je razlika nič in telo se obrne.` },
+        { title: "Kaj pomeni E − U?", body: h`To je kinetična energija. Velika navpična razlika med črto \(E\) in krivuljo \(U\) pomeni veliko hitrost; v presečišču je razlika nič. Če je tam \(U'\ne0\), gre za navadno obračališče; pri \(U'=0\) je lahko mejni primer, kot je separatrisa.` },
         { title: "Vezano ali nevezano?", body: h`Če je dostopni del osi zaprt med dvema obračališčema, telo ostane ujeto in praviloma periodično niha. Če dovoljeno območje sega v neskončnost, lahko pobegne.` }
       ],
       flow: [
@@ -276,15 +276,15 @@
         {
           time: "2:00–3:20",
           title: "Iz grafa kvalitativno preberi gibanje",
-          say: h`Ker je kinetična energija nenegativna, mora veljati \(E-U(x)\ge0\). Presečišča \(U=E\) so obračališča. Minimum potenciala je stabilno ravnovesje, maksimum pa nestabilno. Smer in velikost sile preberem iz naklona.`,
-          write: [h`\dot x=\pm\sqrt{\frac{2}{m}[E-U(x)]}`, h`U(x)\le E`, h`U'(x_e)=0;\quad U''(x_e)>0\ \text{stabilno},\ U''(x_e)<0\ \text{nestabilno}`],
-          meaning: h`V običajnem obračališču je \(\dot x=0\), vendar \(F=-U'\ne0\), zato se telo takoj začne gibati nazaj. V ravnovesju je poleg hitrosti nič tudi sila.`
+          say: h`Ker je kinetična energija nenegativna, mora veljati \(E-U(x)\ge0\). Presečišče \(U=E\) z \(U'\ne0\) je navadno obračališče. Minimum potencialne energije je stabilna ravnovesna lega, maksimum pa nestabilna. Smer in velikost sile preberem iz naklona.`,
+          write: [h`\dot x=\pm\sqrt{\frac{2}{m}[E-U(x)]}`, h`U(x)\le E`, h`U(a)=E,\ U'(a)\ne0\ \Rightarrow\ \text{navadno obračališče}`, h`U'(x_e)=0;\quad U''(x_e)>0\ \text{stabilno},\ U''(x_e)<0\ \text{nestabilno}`],
+          meaning: h`V navadnem obračališču je \(\dot x=0\), vendar \(F=-U'\ne0\), zato se telo takoj začne gibati nazaj. Ravnovesna lega ima ničelno silo; telo v njej ostane le pri ničelni začetni hitrosti.`
         },
         {
           time: "3:20–4:15",
           title: "Pokaži, kako dobiš x(t)",
           say: h`Energijsko enačbo separiram. Predznak izberem glede na trenutno smer gibanja; ob obračališču ga zamenjam. Dobljeni integral je kvadratura in implicitno določa \(x(t)\).`,
-          write: [h`dt=\pm\sqrt{\frac m2}\,\frac{dx}{\sqrt{E-U(x)}}`, h`\boxed{t-t_0=\pm\sqrt{\frac m2}\int_{x_0}^{x}\frac{d\xi}{\sqrt{E-U(\xi)}}}`],
+          write: [h`dt=\pm\sqrt{\frac m2}\,\frac{dx}{\sqrt{E-U(x)}}`, h`\boxed{t-t_i=\pm\sqrt{\frac m2}\int_{x_i}^{x}\frac{d\xi}{\sqrt{E-U(\xi)}}}`],
           meaning: h`Ni nujno, da integral znamo izraziti z elementarnimi funkcijami; že ta zapis je rešitev po kvadraturi.`
         },
         {
@@ -296,8 +296,8 @@
         },
         {
           time: "5:10–6:25",
-          title: "Majhna nihanja okoli stabilnega minimuma",
-          say: h`Okoli stabilnega ravnovesja \(x_0\) potencial Taylorjevo razvijem. Linearni člen izgine, ker je \(U'(x_0)=0\). Pri majhnem odmiku \(\eta=x-x_0\) obdržim kvadratni člen in dobim harmonični oscilator.`,
+          title: "Majhna nihanja okoli nedegeneriranega minimuma",
+          say: h`Okoli nedegeneriranega stabilnega ravnovesja \(x_0\), kjer je \(U''(x_0)>0\), potencialno energijo Taylorjevo razvijem. Linearni člen izgine, ker je \(U'(x_0)=0\). Pri majhnem odmiku \(\eta=x-x_0\) obdržim kvadratni člen in dobim harmonični oscilator. Če je \(U''(x_0)=0\), moram upoštevati višje člene.`,
           write: [h`U(x_0+\eta)\simeq U(x_0)+\frac12U''(x_0)\eta^2`, h`m\ddot\eta+U''(x_0)\eta=0`, h`\boxed{\omega_0=\sqrt{\frac{U''(x_0)}m},\qquad T_0=2\pi\sqrt{\frac m{U''(x_0)}}}`],
           meaning: h`Ukrivljenost potenciala \(U''(x_0)\) je efektivna togost: bolj ozka jama pomeni hitrejše nihanje.`
         },
@@ -326,7 +326,7 @@
         { q: "Zakaj integral pri navadnem obračališču ostane končen?", a: h`Blizu preprostega obrata je \(E-U(x)\propto|x-a|\), zato integrand raste le kot \(1/\sqrt{|x-a|}\), kar je integrabilno.` },
         { q: "Kdaj harmonična aproksimacija odpove?", a: h`Ko odmik ni majhen in kubični ter višji Taylorjevi členi niso zanemarljivi; tedaj je perioda navadno odvisna od amplitude.` }
       ],
-      closing: h`»Torej graf potenciala skupaj z energijo popolnoma določi kvalitativno gibanje: \(U\le E\) da dovoljene lege, \(U=E\) obrate, ekstremi dajo ravnovesja, kvadratura časovni potek, lokalna parabola ob minimumu pa harmonično frekvenco.«`,
+      closing: h`»Torej graf potencialne energije skupaj z mehansko energijo določi dovoljena območja in velikost hitrosti; začetna lega izbere povezano območje, začetna smer pa predznak hitrosti. Pogoj \(U\le E\) da dovoljene lege, navadna presečišča \(U=E\) obračališča, ekstremi ravnovesne lege, kvadratura časovni potek, lokalna parabola ob nedegeneriranem minimumu pa harmonično frekvenco.«`,
       links: [
         { label: "Uradni sklop 3", href: "#/ustno/premocrtno-gibanje" },
         { label: "Predhodno: delo in energija", href: "#/ustno/dinamika-tocke" }
@@ -372,7 +372,7 @@
         {
           time: "0:00–1:10",
           title: "Definicija in ohranitev vrtilne količine",
-          say: h`Sila je radialna, zato ima glede na center ničelni navor. Odvajam \(\vec L\); prvi križni člen izgine, drugi je navor, ki je prav tako nič.`,
+          say: h`Sila je radialna, zato ima glede na center ničelni navor. Odvajam \(\vec L\); prvi člen z vektorskim produktom izgine, drugi je navor, ki je prav tako nič.`,
           write: [h`\vec F=F(r)\vec e_r=-U'(r)\vec e_r`, h`\dot{\vec L}=\dot{\vec r}\times m\dot{\vec r}+\vec r\times m\ddot{\vec r}=\vec r\times\vec F=\vec0`, h`\boxed{\vec L=\vec r\times m\dot{\vec r}=\text{konst.}}`],
           meaning: h`Če je \(L\ne0\), smer \(\vec L\) določi ravnino gibanja. Če je \(L=0\), je gibanje radialno po premici skozi center.`
         },
@@ -474,7 +474,7 @@
         { title: "Kotaljenje brez drsenja", body: h`\(A\) je trenutna stična točka. Pogoj \(\vec v_A=0\) da \(v_C=R\omega\). Statično trenje se izračuna in mora zadoščati \(|F_t|\le\mu_sN\).` }
       ],
       drawSteps: [
-        { title: "Nariši telo, C in P", body: h`Izberi masno središče \(C\), poljubno točko \(P\) in \(\vec\xi_P=\vec r_P-\vec r_C\). Dodaj translacijsko hitrost \(\vec v_C\), os \(\vec\omega\) in tangentni člen \(\vec\omega\times\vec\xi_P\).` },
+        { title: "Nariši telo, C in P", body: h`Izberi masno središče \(C\), poljubno točko \(P\) in \(\vec\xi_P=\vec r_P-\vec r_C\). Dodaj translacijsko hitrost \(\vec v_C\), os \(\vec\omega\) in tangencialni člen \(\vec\omega\times\vec\xi_P\).` },
         { title: "Dodaj glavne osi", body: h`Skozi \(C\) nariši tri glavne osi in napiši \(J=\operatorname{diag}(J_1,J_2,J_3)\). Nariši \(\vec\omega\) in \(\vec L=J\vec\omega\) v različnih smereh.` },
         { title: "Pojasni nevzporednost", body: h`Komponente \(\omega_i\) se množijo z različnimi \(J_i\), zato se smer vektorja spremeni. Vzporedna sta le na glavni osi ali pri sfernem telesu.` },
         { title: "Nariši prosto vrtavko", body: h`V prostoru naj bo \(\vec L\) navpičen in fiksen; telesna os \(\vec e_3\) naj okoli njega zariše stožec. Tako vizualno ločiš stalni \(\vec L\) od spremenljivih telesnih komponent.` },
@@ -491,14 +491,14 @@
         {
           time: "0:00–1:15",
           title: "Definicija, šest prostostnih stopenj in lega",
-          say: h`Izberem masno središče \(C\) in na telo pritrjen koordinatni sistem. Koordinate \(\vec\rho_P\) materialne točke v telesnem sistemu so konstantne, orientacijo telesa pa poda rotacijska matrika \(Q(t)\).`,
-          write: [h`|\vec r_P-\vec r_Q|=\text{konst.}`, h`\boxed{\vec r_P(t)=\vec R_C(t)+Q(t)\vec\rho_P}`, h`Q^TQ=I,\qquad \det Q=1`],
+          say: h`Izberem masno središče \(C\) in na telo pritrjen koordinatni sistem. Koordinate \(\vec a_P\) materialne točke v telesnem sistemu so konstantne, orientacijo telesa pa poda rotacijska matrika \(Q(t)\).`,
+          write: [h`|\vec r_P-\vec r_S|=\text{konst.}`, h`\boxed{\vec r_P(t)=\vec r_C(t)+Q(t)\vec a_P}`, h`Q^TQ=I,\qquad \det Q=1`],
           meaning: h`Tri komponente \(\vec R_C\) opisujejo translacijo, trije parametri rotacije \(Q\) orientacijo: skupaj šest prostostnih stopenj.`
         },
         {
           time: "1:15–2:40",
           title: "Izpelji hitrost in pospešek poljubne točke",
-          say: h`Za vektor \(\vec\xi_P=Q\vec\rho_P\), ki je pritrjen na telo, velja transportno pravilo \(\dot{\vec\xi}_P=\vec\omega\times\vec\xi_P\). Enkrat in dvakrat odvajam lego.`,
+          say: h`Za vektor \(\vec\xi_P=Q\vec a_P\), ki je pritrjen na telo, velja transportno pravilo \(\dot{\vec\xi}_P=\vec\omega\times\vec\xi_P\). Enkrat in dvakrat odvajam lego.`,
           write: [h`\dot{\vec\xi}_P=\vec\omega\times\vec\xi_P`, h`\boxed{\vec v_P=\vec V_C+\vec\omega\times\vec\xi_P}`, h`\boxed{\vec a_P=\vec a_C+\dot{\vec\omega}\times\vec\xi_P+\vec\omega\times(\vec\omega\times\vec\xi_P)}`],
           meaning: h`V pospešku so translacijski, tangencialni in normalni oziroma centripetalni člen. Coriolisovega člena ni, ker je \(P\) pritrjena na telo in nima relativne hitrosti.`
         },
@@ -521,7 +521,7 @@
           title: "Newton–Eulerjeva dinamika",
           say: h`Zdaj jasno preidem iz kinematike v dinamiko. Translacijo vodi rezultanta zunanjih sil. Rotacijo glede na masno središče vodi zunanji navor. Za prehod iz prostora v vrteče telesne osi uporabim transportno pravilo.`,
           write: [h`\boxed{M\vec a_C=\vec F^{\rm ext}}`, h`\left(\frac{d\vec A}{dt}\right)_{\rm prostor}=\left(\frac{d\vec A}{dt}\right)_{\rm telo}+\vec\omega\times\vec A`, h`\boxed{J\dot{\vec\omega}+\vec\omega\times(J\vec\omega)=\vec N_C}`],
-          meaning: h`V telesnem sistemu je \(J\) konstanten; dodatni križni člen nastane zato, ker se sama baza vrti. Standardna oblika velja glede na masno središče ali fiksen pol.`
+          meaning: h`V telesnem sistemu je \(J\) konstanten; žiroskopski člen nastane zato, ker se sama baza vrti. Standardna oblika velja glede na masno središče ali telesno točko, ki miruje v inercialnem sistemu.`
         },
         {
           time: "6:40–7:35",
@@ -569,7 +569,7 @@
         { q: "Kaj je fizikalni pomen glavnih osi?", a: h`To so lastne smeri tenzorja \(J\). V njih je tenzor diagonalen; če telo vrti okoli ene izmed njih, je \(\vec L\parallel\vec\omega\).` },
         { q: "Kaj se ohranja pri prosti vrtavki?", a: h`Prostorski vektor vrtilne količine \(\vec L\), njegova velikost in rotacijska energija. Komponente \(\omega_i\) v telesu se lahko kljub temu spreminjajo.` },
         { q: "Zakaj je srednja os nestabilna?", a: h`Linearizacija Eulerjevih enačb okoli vrtenja po srednji osi da eksponentno rastočo motnjo, medtem ko pri skrajnih oseh dobimo omejeno osciliranje.` },
-        { q: "Glede na kateri pol velja Eulerjeva enačba?", a: h`V navedeni standardni obliki glede na masno središče ali fiksen pol. Pri poljubnem pospešujočem polu nastanejo dodatni členi.` },
+        { q: "Glede na kateri pol velja Eulerjeva enačba?", a: h`V navedeni standardni obliki glede na masno središče ali glede na telesno točko, ki miruje v inercialnem sistemu. Pri poljubnem pospešujočem polu nastanejo dodatni členi.` },
         { q: "Ali statično trenje pri kotaljenju opravlja delo?", a: h`Na nepremični podlagi je trenutna hitrost stične točke nič, zato idealno statično trenje ne opravlja moči. Njegova velikost pa se določi iz enačb in je le omejena z \(\mu_sN\).` }
       ],
       closing: h`»Togo telo zato rešujem v treh plasteh: kinematika razcepi gibanje na \(\vec R_C\) in rotacijo, tenzor \(J\) kodira razpored mase, Newton–Eulerjeve enačbe pa povežejo sile in navore z gibanjem. Pri več telesih tem enačbam dodam še reakcije in vezne pogoje.«`,

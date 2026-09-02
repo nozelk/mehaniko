@@ -4,6 +4,8 @@
   const TOPIC_IDS = ["premocrtno-potenciali", "centralna-sila", "togo-telo"];
   const RAW_FOCUS = window.MECHANICS_FOCUS;
   const EASY = window.MECHANICS_EASY || {};
+  const COMMON = window.MECHANICS_COMMON_FOUNDATIONS || {};
+  const FOUNDATIONS = window.MECHANICS_FOUNDATIONS || {};
   const EXAM_SCRIPTS = window.MECHANICS_EXAM_SCRIPTS || {};
 
   if (!Array.isArray(RAW_FOCUS) || RAW_FOCUS.length !== 3) {
@@ -15,8 +17,11 @@
   if (topics.some(topic => !topic)) {
     throw new Error("Manjka ena od treh dovoljenih tem: potenciali, centralna sila ali togo telo.");
   }
-  if (TOPIC_IDS.some(id => !EASY[id] || !EXAM_SCRIPTS[id])) {
-    throw new Error("Manjka začetniška razlaga ali izpitni scenarij za eno od treh tem.");
+  if (TOPIC_IDS.some(id => !EASY[id] || !FOUNDATIONS[id] || !EXAM_SCRIPTS[id])) {
+    throw new Error("Manjka začetniška razlaga, temeljni tečaj ali izpitni scenarij za eno od treh tem.");
+  }
+  if (!Array.isArray(COMMON.definitions) || !COMMON.definitions.length || !COMMON.reminders) {
+    throw new Error("Manjkajo skupne osnove mehanike pred tremi posebnimi temami.");
   }
 
   const topicById = new Map(topics.map(topic => [topic.id, topic]));
@@ -56,7 +61,7 @@
         { tex: String.raw`\vec v_P,\vec v_C`, meaning: "hitrosti točke P in masnega središča" },
         { tex: String.raw`\vec\omega`, meaning: "kotna hitrost; smer kaže os vrtenja [rad/s]" },
         { tex: String.raw`\vec\xi_P`, meaning: "vektor od C do P [m]" },
-        { tex: String.raw`\times`, meaning: "vektorski produkt; poda tangentno smer" },
+        { tex: String.raw`\times`, meaning: "vektorski produkt; poda tangencialno smer" },
         { tex: String.raw`J_C,\vec L_C`, meaning: "vztrajnostni tenzor in vrtilna količina glede na C" }
       ]
     }
@@ -222,6 +227,9 @@
     if (parts.length === 1 && parts[0] === "domov") {
       return { name: "domov" };
     }
+    if (parts.length === 1 && parts[0] === "osnove") {
+      return { name: "osnove" };
+    }
     if (parts.length === 2 && parts[0] === "tema" && topicById.has(parts[1])) {
       return { name: "tema", id: parts[1] };
     }
@@ -246,12 +254,13 @@
   function updateChrome(route) {
     document.querySelectorAll(".main-nav a").forEach(link => {
       const isHome = route.name === "domov" && link.dataset.route === "domov";
+      const isCommon = route.name === "osnove" && link.dataset.route === "osnove";
       const isTopic = route.name === "tema" && link.dataset.topic === route.id;
-      link.classList.toggle("active", isHome || isTopic);
+      link.classList.toggle("active", isHome || isCommon || isTopic);
     });
 
     const topic = route.name === "tema" ? topicById.get(route.id) : null;
-    const current = topic ? topic.title : "Samo 3 teme";
+    const current = topic ? topic.title : route.name === "osnove" ? "Skupne osnove" : "Samo 3 teme";
     breadcrumb.innerHTML = `Mehanika <span>/</span> ${escapeHtml(current)}`;
     document.title = `${current} — Mehanika`;
   }
@@ -280,9 +289,10 @@
           <div class="hero-copy">
             <span class="eyebrow">Natanko tri teme · nič drugega</span>
             <h1>Tri teme.<br><span class="accent-script">Do ustnega odgovora.</span></h1>
-            <p class="lead">Potenciali, centralna sila in togo telo. Vsaka tema združi začetniško razlago, tablo, formule z izvorom ter pripravljen govor za ustni izpit.</p>
+            <p class="lead">Najprej skupni jezik mehanike, šele nato potenciali, centralna sila in togo telo. Vsaka tema združi definicije, tablo, formule z izvorom ter pripravljen govor za ustni izpit.</p>
             <div class="hero-actions three-home-actions">
-              <a class="primary-button" href="#/tema/${encodeURIComponent(nextTopic.id)}">${count === 3 ? "Ponovi prvo temo" : "Nadaljuj učenje"}</a>
+              <a class="primary-button" href="#/osnove">1 · Najprej skupne osnove</a>
+              <a class="secondary-button" href="#/tema/${encodeURIComponent(nextTopic.id)}">2 · ${count === 3 ? "Ponovi prvo temo" : "Nadaljuj s temo"}</a>
               <button class="secondary-button" type="button" data-action="random-topic">Naključna od treh</button>
             </div>
           </div>
@@ -297,20 +307,137 @@
             <div><span class="eyebrow">Edini načrt na tej strani</span><h2 id="three-plan-title">10 ur samo za te tri.</h2></div>
           </header>
           <div class="three-plan-grid">
+            <a class="three-plan-item" href="#/osnove"><strong>1 h</strong><span>Skupne osnove mehanike</span><small>lega, hitrost, pospešek, sila, delo in energija</small></a>
             <a class="three-plan-item" href="#/tema/premocrtno-potenciali"><strong>3 h</strong><span>Premočrtno gibanje s potenciali</span><small>graf, energija, perioda, harmonični približek</small></a>
             <a class="three-plan-item" href="#/tema/centralna-sila"><strong>3 h</strong><span>Gibanje v polju centralne sile</span><small>integrali, Kepler, Binet in efektivni potencial</small></a>
-            <a class="three-plan-item" href="#/tema/togo-telo"><strong>4 h</strong><span>Kinematika in dinamika togega telesa</span><small>tenzor, Euler, prosta vrtavka in sistemi teles</small></a>
+            <a class="three-plan-item" href="#/tema/togo-telo"><strong>3 h</strong><span>Kinematika in dinamika togega telesa</span><small>tenzor, Euler, prosta vrtavka in sistemi teles</small></a>
           </div>
         </section>
 
         <header class="page-intro three-home-intro">
-          <span class="eyebrow">Izberi eno</span>
+          <span class="eyebrow">Po skupnih osnovah izberi eno</span>
           <h1>Vse, kar je tukaj,<br><span class="accent-script">je del teh treh.</span></h1>
           <p class="lead">Iskanje, naključni izbor, napredek in povezave so omejeni na spodnje tri kartice.</p>
         </header>
         <div class="focus-index-grid three-topic-grid three-grid">${topics.map(topicCard).join("")}</div>
       </div>
     `);
+  }
+
+  function renderCommonFoundationsPage() {
+    const core = COMMON.coreQuestion || {};
+    const chain = asArray(COMMON.chain);
+    const definitions = asArray(COMMON.definitions);
+    const energy = COMMON.energy || {};
+    const energySymbols = asArray(energy.symbols);
+    const caveats = asArray(energy.caveats);
+    const examples = asArray(energy.examples);
+
+    setView(`
+      <article class="common-foundation-page">
+        <section class="common-hero">
+          <div>
+            <span class="eyebrow">KORAK 0 · PRED VSEMI TREMI TEMAMI</span>
+            <h1>Najprej <em>mehanika</em>.<br>Potencial pride pozneje.</h1>
+            <p>${escapeHtml(COMMON.intro || "Najprej zgradimo skupni jezik mehanike.")}</p>
+            <div class="hero-actions">
+              <button class="primary-button" type="button" data-scroll-target="common-definitions">Začni pri prvi definiciji</button>
+              <a class="secondary-button" href="#/tema/premocrtno-potenciali">Nato odpri 1. temo</a>
+            </div>
+          </div>
+          <aside class="common-hero-order" aria-label="Pravilni vrstni red učenja">
+            <span>PRAVILNI VRSTNI RED</span>
+            <ol>
+              <li><b>1</b> Gibanje</li>
+              <li><b>2</b> Sile in Newton</li>
+              <li><b>3</b> Delo in kinetična energija</li>
+              <li><b>4</b> Šele nato U, gradient in E</li>
+            </ol>
+          </aside>
+        </section>
+
+        <section class="focus-section three-section foundation-section common-core-section" id="common-core">
+          <header class="focus-section-head three-section-head foundation-head">
+            <div><span class="eyebrow">00 · VELIKA SLIKA</span><h2>${escapeHtml(core.question || "Kaj mehanika ugotavlja?")}</h2></div>
+            <p>To je logika, ki stoji za vsemi poznejšimi formulami.</p>
+          </header>
+          <article class="foundation-core">
+            <div class="foundation-core-copy">
+              <span>OD VPRAŠANJA DO GIBANJA</span>
+              <p>${richText(core.answer || "")}</p>
+              ${core.warning ? `<aside>${richText(core.warning)}</aside>` : ""}
+            </div>
+            ${core.tex ? `<div class="foundation-core-math">${M(core.tex, true)}</div>` : ""}
+          </article>
+          ${chain.length ? `<ol class="foundation-chain" aria-label="Skupna vzročna veriga mehanike">
+            ${chain.map((item, index) => `<li><b>${String(index + 1).padStart(2, "0")}</b><span>${richText(item)}</span></li>`).join("")}
+          </ol>` : ""}
+        </section>
+
+        <section class="focus-section three-section foundation-section common-definitions-section" id="common-definitions">
+          <header class="focus-section-head three-section-head foundation-head">
+            <div><span class="eyebrow">01 · DEFINICIJE OD ZAČETKA</span><h2>Najprej pojmi, potem formule.</h2></div>
+            <p>Uči se po vrsti. Prvih trinajst definicij še ne potrebuje potencialne energije.</p>
+          </header>
+          <div class="foundation-definitions common-definition-grid">
+            ${definitions.map((item, index) => `<article class="foundation-definition" id="common-definition-${index + 1}">
+              <header><span>DEFINICIJA ${String(index + 1).padStart(2, "0")}</span><h3>${escapeHtml(item.title || "Osnovni pojem")}</h3></header>
+              <p class="foundation-definition-text">${richText(item.definition || "")}</p>
+              ${item.tex ? `<div class="foundation-definition-math">${M(item.tex, true)}</div>` : ""}
+              ${item.intuition ? `<aside class="foundation-intuition"><strong>Fizična predstava</strong><p>${richText(item.intuition)}</p></aside>` : ""}
+              ${item.say ? `<blockquote class="foundation-say"><span>NA USTNEM RECI</span><p>${richText(item.say)}</p></blockquote>` : ""}
+            </article>`).join("")}
+          </div>
+        </section>
+
+        <section class="focus-section three-section common-energy-section" id="common-energy">
+          <header class="focus-section-head three-section-head">
+            <div><span class="eyebrow">02 · KO PRIDE ENERGIJA</span><h2>${escapeHtml(energy.title || "Kaj pomenijo E, T in U?")}</h2></div>
+            <p>Ta blok je namenoma šele za gibanjem, silo, delom in Newtonovimi zakoni.</p>
+          </header>
+          <div class="common-energy-main">
+            <div class="common-energy-formula">${energy.tex ? M(energy.tex, true) : ""}</div>
+            <div class="common-energy-copy">
+              <p>${richText(energy.explanation || "")}</p>
+              ${energySymbols.length ? `<dl>${energySymbols.map(item => `<div><dt>${item.tex ? M(item.tex) : ""}</dt><dd>${richText(item.text || "")}</dd></div>`).join("")}</dl>` : ""}
+            </div>
+          </div>
+          ${caveats.length ? `<div class="common-energy-caveats">
+            ${caveats.map((item, index) => `<article><b>${String(index + 1).padStart(2, "0")}</b><p>${richText(item)}</p></article>`).join("")}
+          </div>` : ""}
+          ${examples.length ? `<div class="common-energy-examples">
+            ${examples.map(item => `<article><span>${escapeHtml(item.name || "Primer")}</span>${item.tex ? M(item.tex, true) : ""}</article>`).join("")}
+          </div>` : ""}
+        </section>
+
+        <section class="focus-section three-section common-topic-map" id="common-next">
+          <header class="focus-section-head three-section-head">
+            <div><span class="eyebrow">03 · ZDAJ IZBERI TEMO</span><h2>Iste osnove, tri različne uporabe.</h2></div>
+            <p>V vsaki temi te na začetku čaka še štirivrstični opomnik teh skupnih pojmov.</p>
+          </header>
+          <div class="common-topic-map-grid">
+            ${topics.map(topic => `<a href="#/tema/${encodeURIComponent(topic.id)}" style="--common-topic-accent:${escapeHtml(topic.accent || "#ff806f")}"><b>${escapeHtml(topic.number)}</b><span><strong>${escapeHtml(topic.title)}</strong><small>${escapeHtml(topic.short || "Odpri temo")}</small></span><i>→</i></a>`).join("")}
+          </div>
+        </section>
+
+        <p class="source-note three-source-note"><strong>Vir za obseg in izpeljave:</strong> tvoj list <a href="Mehanika-Izpitna-Vprasanja.pdf" target="_blank" rel="noopener">Mehanika — izpitna vprašanja (PDF)</a>. Skupne definicije so tukaj dodane zato, da formule niso brez pomena.</p>
+      </article>
+    `);
+  }
+
+  function renderCommonReminder(topic) {
+    const reminders = asArray(COMMON.reminders?.[topic.id]);
+    if (!reminders.length) return "";
+
+    return `<section class="topic-common-reminder" id="three-common-reminder" style="--common-topic-accent:${escapeHtml(topic.accent || "#ff806f")}">
+      <header>
+        <div><span>KORAK 0 · SKUPNI OPOMNIK</span><h2>Pred posebno temo se spomni tega.</h2></div>
+        <a href="#/osnove">Odpri vse skupne definicije →</a>
+      </header>
+      <div class="topic-common-reminder-grid">
+        ${reminders.map(item => `<article>${item.tex ? M(item.tex, true) : ""}<p>${richText(item.text || "")}</p></article>`).join("")}
+      </div>
+    </section>`;
   }
 
   function renderBefore(easy) {
@@ -325,6 +452,72 @@
       </header>
       ${before.length ? `<ul class="three-before-list before-list">${before.map(item => `<li class="three-before-item"><span class="three-before-copy">${richText(item)}</span></li>`).join("")}</ul>` : ""}
       ${glossary.length ? `<dl class="three-glossary">${glossary.map(item => `<div><dt>${item.tex ? M(item.tex) : escapeHtml(item.term || "")}</dt><dd>${richText(item.meaning || item.text || "")}${item.unit ? `<small>${escapeHtml(item.unit)}</small>` : ""}</dd></div>`).join("")}</dl>` : ""}
+    </section>`;
+  }
+
+  function renderFoundations(topic) {
+    const foundation = FOUNDATIONS[topic.id];
+    if (!foundation) return "";
+    const chain = asArray(foundation.chain);
+    const definitions = asArray(foundation.definitions);
+    const core = foundation.coreQuestion || {};
+
+    return `<section class="focus-section three-section foundation-section" id="three-foundations" style="--foundation-accent:${escapeHtml(topic.accent || "#ff806f")}">
+      <header class="focus-section-head three-section-head foundation-head">
+        <div><span class="eyebrow">01 · POSEBNE DEFINICIJE TEME</span><h2>${escapeHtml(foundation.title || "Temelji pred formulami")}</h2></div>
+        <p>${escapeHtml(foundation.intro || "Skupne osnove že poznaš; zdaj dodamo pojme te teme in šele nato izpeljave.")}</p>
+      </header>
+
+      ${core.question ? `<article class="foundation-core">
+        <div class="foundation-core-copy">
+          <span>OSNOVNO VPRAŠANJE</span>
+          <h3>${escapeHtml(core.question)}</h3>
+          <p>${richText(core.answer || "")}</p>
+          ${core.warning ? `<aside>${richText(core.warning)}</aside>` : ""}
+        </div>
+        ${core.tex ? `<div class="foundation-core-math">${M(core.tex, true)}</div>` : ""}
+      </article>` : ""}
+
+      ${chain.length ? `<ol class="foundation-chain" aria-label="Vzročna veriga teme">
+        ${chain.map((item, index) => `<li><b>${String(index + 1).padStart(2, "0")}</b><span>${richText(item)}</span></li>`).join("")}
+      </ol>` : ""}
+
+      ${definitions.length ? `<div class="foundation-definitions">
+        ${definitions.map((item, index) => `<article class="foundation-definition">
+          <header><span>DEFINICIJA ${String(index + 1).padStart(2, "0")}</span><h3>${escapeHtml(item.title || "Osnovni pojem")}</h3></header>
+          <p class="foundation-definition-text">${richText(item.definition || "")}</p>
+          ${item.tex ? `<div class="foundation-definition-math">${M(item.tex, true)}</div>` : ""}
+          ${item.intuition ? `<aside class="foundation-intuition"><strong>Fizična predstava</strong><p>${richText(item.intuition)}</p></aside>` : ""}
+          ${item.say ? `<blockquote class="foundation-say"><span>NA USTNEM RECI</span><p>${richText(item.say)}</p></blockquote>` : ""}
+        </article>`).join("")}
+      </div>` : ""}
+    </section>`;
+  }
+
+  function renderFullDerivations(topic) {
+    const foundation = FOUNDATIONS[topic.id];
+    const derivations = asArray(foundation && foundation.derivations);
+    if (!derivations.length) return "";
+
+    return `<section class="focus-section three-section full-derivations" id="three-derivations" style="--foundation-accent:${escapeHtml(topic.accent || "#ff806f")}">
+      <header class="focus-section-head three-section-head">
+        <div><span class="eyebrow">Od prvega zakona do rezultata</span><h2>Celotne izpeljave — brez preskočenih korakov.</h2></div>
+        <p>Pri vsaki vrstici je napisano, zakaj jo smemo narediti. Tako se formule ni treba učiti kot naključnega zapisa.</p>
+      </header>
+      <div class="full-derivation-list">
+        ${derivations.map((item, index) => `<details class="full-derivation" ${index === 0 ? "open" : ""}>
+          <summary><b>${String(index + 1).padStart(2, "0")}</b><span><strong>${escapeHtml(item.title || "Izpeljava")}</strong>${item.goal ? `<small>${richText(item.goal)}</small>` : ""}</span></summary>
+          <div class="full-derivation-body">
+            <ol>
+              ${asArray(item.steps).map(step => `<li>
+                <p>${richText(step.reason || "")}</p>
+                ${step.tex ? `<div class="full-derivation-math">${M(step.tex, true)}</div>` : ""}
+              </li>`).join("")}
+            </ol>
+            ${item.result ? `<aside class="full-derivation-result"><strong>Kaj smo dobili</strong><p>${richText(item.result)}</p></aside>` : ""}
+          </div>
+        </details>`).join("")}
+      </div>
     </section>`;
   }
 
@@ -573,7 +766,8 @@
             <p class="lead">${richText(topic.intro || "")}</p>
             ${easy.promise ? `<p class="three-topic-promise">${richText(easy.promise)}</p>` : ""}
             <div class="chapter-actions three-topic-actions">
-              <button class="primary-button" type="button" data-scroll-target="three-script">Začni: točno kaj naredim</button>
+              <button class="primary-button" type="button" data-scroll-target="three-common-reminder">Začni pri opomniku</button>
+              <a class="secondary-button" href="#/osnove">Vse skupne osnove</a>
               <button class="mark-button ${done ? "done" : ""}" type="button" data-action="toggle-complete" data-id="${escapeHtml(topic.id)}">${done ? "✓ Označeno: znam" : "Označi: znam"}</button>
               <button class="secondary-button" type="button" data-action="print">Natisni / shrani PDF</button>
             </div>
@@ -581,26 +775,29 @@
         </section>
 
         <nav class="focus-jump three-jump-nav" aria-label="Kazalo teme">
-          <button type="button" data-scroll-target="three-script">Točno kaj naredim</button>
-          <button type="button" data-scroll-target="three-board">Končna risba</button>
-          <button type="button" data-scroll-target="three-before">Razumi osnove</button>
-          <button type="button" data-scroll-target="three-spotlight">Glavna izpeljava</button>
+          <button type="button" data-scroll-target="three-common-reminder">0 · Skupni opomnik</button>
+          <button type="button" data-scroll-target="three-foundations">1 · Definicije teme</button>
+          <button type="button" data-scroll-target="three-derivations">2 · Izpeljave</button>
+          <button type="button" data-scroll-target="three-script">3 · Točno kaj povem</button>
+          <button type="button" data-scroll-target="three-board">4 · Končna risba</button>
           <button type="button" data-scroll-target="three-formulas">Vse formule</button>
           <button type="button" data-scroll-target="three-questions">Vprašanja</button>
         </nav>
 
-        ${renderEssence(topic)}
-        ${renderExamScript(topic)}
-
+        ${renderCommonReminder(topic)}
         ${renderBefore(easy)}
+        ${renderFoundations(topic)}
         ${renderBasics(easy)}
+        ${renderEssence(topic)}
+        ${renderFullDerivations(topic)}
         ${renderSpotlight(easy)}
+        ${renderExamScript(topic)}
         ${renderFormulaCourse(easy)}
         ${renderTrapsAndClosing(topic)}
         ${renderQuestions(topic)}
         ${renderCheckpoints(easy)}
         ${renderPager(topic)}
-        <p class="source-note three-source-note"><strong>Obseg te priprave:</strong> samo premočrtno gibanje s potenciali, centralna sila in togo telo.</p>
+        <p class="source-note three-source-note"><strong>Obseg te priprave:</strong> samo premočrtno gibanje s potenciali, centralna sila in togo telo. Vrstni red in izpeljave sledijo tvojemu listu <a href="Mehanika-Izpitna-Vprasanja.pdf" target="_blank" rel="noopener">Mehanika — izpitna vprašanja (PDF)</a>.</p>
       </article>
     `);
   }
@@ -612,6 +809,7 @@
     closeSidebar();
     updateChrome(route);
     if (route.name === "tema") renderTopic(topicById.get(route.id));
+    else if (route.name === "osnove") renderCommonFoundationsPage();
     else renderHome();
     updateProgress();
   }
@@ -649,7 +847,7 @@
       questions: topic.questions,
       closing: topic.closing
     };
-    return normalize(collectText([searchableGuide, EASY[topic.id] || {}, EXAM_SCRIPTS[topic.id] || {}]).join(" "));
+    return normalize(collectText([searchableGuide, EASY[topic.id] || {}, FOUNDATIONS[topic.id] || {}, EXAM_SCRIPTS[topic.id] || {}, COMMON.reminders?.[topic.id] || []]).join(" "));
   }
 
   function performSearch(query) {
@@ -660,13 +858,14 @@
       return;
     }
 
+    const commonHit = terms.every(term => normalize(collectText(COMMON).join(" ")).includes(term));
     const hits = topics.filter(topic => {
       const haystack = topicSearchText(topic);
       return terms.every(term => haystack.includes(term));
     });
 
-    searchResults.innerHTML = hits.length
-      ? hits.map(topic => `<a class="search-result three-search-result" href="#/tema/${encodeURIComponent(topic.id)}"><small>Tema ${escapeHtml(topic.number)} od 3</small><strong>${escapeHtml(topic.title)}</strong></a>`).join("")
+    searchResults.innerHTML = commonHit || hits.length
+      ? `${commonHit ? `<a class="search-result three-search-result" href="#/osnove"><small>Korak 0 pred tremi temami</small><strong>Skupne osnove mehanike</strong></a>` : ""}${hits.map(topic => `<a class="search-result three-search-result" href="#/tema/${encodeURIComponent(topic.id)}"><small>Tema ${escapeHtml(topic.number)} od 3</small><strong>${escapeHtml(topic.title)}</strong></a>`).join("")}`
       : `<div class="search-empty three-search-empty">Ni zadetkov v teh treh temah. Poskusi »potencial«, »Binet« ali »tenzor«.</div>`;
     searchResults.hidden = false;
   }

@@ -11,7 +11,7 @@
         h`Pika pomeni odvod po času: \(\dot x=dx/dt\) je hitrost, \(\ddot x=d^2x/dt^2\) pa pospešek.`,
         h`Odvod \(U'(x)\) je naklon grafa potenciala; drugi odvod \(U''(x)\) pove njegovo ukrivljenost.`,
         h`Telo se giblje po vodoravni koordinati \(x\), ne po narisani krivulji \(U(x)\). Krivulja je samo zemljevid energije.`,
-        h`Predpostavimo konstantno maso, konservativno silo \(F(x)\) in brez trenja. Zato se mehanska energija ohranja.`,
+        h`Predpostavimo konstantno maso, časovno neodvisno konservativno rezultanto sil \(F(x)\) in da nobena nekonservativna sila ne opravlja dela. Zato se mehanska energija ohranja.`,
         h`V formuli s tvoje slike je \(x_0\) ravnovesje. Za začetno lego pri gibanju bomo uporabili drugo oznako \(x_i\), da ju ne zamenjaš.`
       ],
       basics: [
@@ -22,7 +22,7 @@
         },
         {
           title: "2. Kaj je potencial U(x)?",
-          body: h`Potencial je shranjena energija pri posamezni legi. Graf je podoben pokrajini: minimum je dolina, maksimum hrib. Toda kroglica ni na grafu — graf samo pove energijo kroglice na pravi osi \(x\).`,
+          body: h`\(U(x)\) je potencialna energija sistema kot funkcija lege: vsaki legi \(x\) priredi eno število z enoto joule. Graf je podoben pokrajini: minimum je dolina, maksimum hrib. Toda telo ni na grafu — graf samo pove potencialno energijo sistema pri posamezni legi na pravi osi \(x\).`,
           analogy: "Višje na hribu pomeni več shranjene gravitacijske energije."
         },
         {
@@ -38,9 +38,9 @@
       ],
       spotlight: {
         label: "Formula s tvoje slike",
-        title: "Zakaj je potencial blizu minimuma parabola?",
+        title: "Zakaj je potencial blizu nedegeneriranega minimuma parabola?",
         tex: h`\boxed{U(x)\approx U(x_0)+\frac12U''(x_0)(x-x_0)^2}`,
-        plain: h`To pravi: če smo dovolj blizu stabilnega minimuma \(x_0\), zapleten potencial izgleda skoraj enako kot preprosta parabola oziroma idealna vzmet.`,
+        plain: h`To velja blizu nedegeneriranega stabilnega minimuma \(x_0\), kjer je \(U''(x_0)>0\): zapleten potencial je tam v najnižjem redu parabola oziroma idealna vzmet. Če je \(U''(x_0)=0\), moramo pogledati višje člene.`,
         terms: [
           { tex: h`x_0`, meaning: "ravnovesna lega oziroma dno potencialne jame" },
           { tex: h`x-x_0`, meaning: "majhen odmik od ravnovesja; pogosto ga označimo z η" },
@@ -54,7 +54,7 @@
           { title: "V minimumu je naklon nič", text: "Ker je x₀ ravnovesje, velja U′(x₀)=0. Zato linearni člen izgine.", tex: h`U'(x_0)=0` },
           { title: "Zakaj je spredaj ravno 1/2?", text: "Taylorjev koeficient je 1/2!=1/2. Enako vidiš, če kvadratni člen zapišeš A(x−x₀)²: njegov drugi odvod je 2A, zato mora biti A=U″(x₀)/2.", tex: h`2A=U''(x_0)\quad\Rightarrow\quad A=\frac12U''(x_0)` },
           { title: "Odmik je majhen", text: "Kvadrat majhnega odmika je pomembnejši od kubika, četrte potence in naprej, zato obdržimo prvi neničelni člen.", tex: h`|x-x_0|\ \text{majhen}\quad\Rightarrow\quad (x-x_0)^3,(x-x_0)^4,\ldots\ \text{zanemarimo}` },
-          { title: "Dobimo parabolo", text: "Drugi odvod postane konstanta, ki meri strmino oziroma togost jame.", tex: h`k_{\rm eff}=U''(x_0)>0` },
+          { title: "Dobimo parabolo", text: "Vrednost drugega odvoda v x₀ je konstanta, ki meri ukrivljenost oziroma efektivno togost jame.", tex: h`k_{\rm eff}=U''(x_0)>0` },
           { title: "Iz parabole dobimo vzmet", text: "Odvajamo potencial; sila je sorazmerna odmiku in kaže nazaj.", tex: h`F=-U'(x)\approx-U''(x_0)(x-x_0)=-k_{\rm eff}(x-x_0)` }
         ],
         units: h`\([U'']=\mathrm{J/m^2}=\mathrm{N/m}\). Zato ima \(U''/m\) enoto \(\mathrm{s^{-2}}\), njegov koren pa \(\mathrm{s^{-1}}\), kot mora imeti kotna frekvenca.`,
@@ -81,7 +81,7 @@
           tex: h`\boxed{F(x)=-\frac{dU}{dx}}`,
           plain: "Sila vedno kaže v smer, v kateri potencial pada.",
           symbols: [
-            { tex: h`F(x)`, meaning: "sila pri legi x, v njutonih" },
+            { tex: h`F(x)`, meaning: "sila pri legi x, v newtonih (N)" },
             { tex: h`U(x)`, meaning: "potencialna energija, v joulih" },
             { tex: h`U'(x)`, meaning: "naklon grafa U(x)" }
           ],
@@ -143,16 +143,16 @@
         },
         {
           title: "Obračališče proti ravnovesju",
-          tex: h`\boxed{U(a)=E\Rightarrow\dot x(a)=0;\qquad U'(x_0)=0\Rightarrow F(x_0)=0}`,
-          plain: "V obračališču se telo samo obrne; v ravnovesju na telo ni sile.",
+          tex: h`\boxed{U(a)=E,\ U'(a)\ne0\Rightarrow\dot x(a)=0\ \text{(navadno obračališče)};\qquad U'(x_0)=0\Rightarrow F(x_0)=0}`,
+          plain: "V navadnem obračališču se telo obrne; v ravnovesni legi je rezultanta sil nič. Da telo tam tudi ostane, mora imeti začetno hitrost nič.",
           symbols: [
-            { tex: h`a`, meaning: "obračališče" },
+            { tex: h`a`, meaning: "navadno obračališče; poleg U(a)=E velja U′(a)≠0" },
             { tex: h`x_0`, meaning: "ravnovesna lega; ista oznaka kot v formuli s tvoje slike" },
             { tex: h`U'(x_0)`, meaning: "naklon potenciala v ravnovesju" }
           ],
           origin: [
-            { text: "Obrat sledi iz ničelne kinetične energije." },
-            { text: "Ravnovesje sledi iz Newtona: za mirovanje potrebujemo F=0." },
+            { text: "Iz U(a)=E sledi ničelna hitrost. Če je hkrati U′(a)≠0, sila telo pospeši nazaj in dobimo navadno obračališče." },
+            { text: "Ravnovesna lega sledi iz Newtona: F(x₀)=0. Za mirovanje v njej mora veljati tudi začetna hitrost v₀=0." },
             { text: "Navadno ima obračališče F≠0, zato se telo takoj pospeši nazaj." }
           ],
           use: "To je najpogostejša ustna past."
@@ -176,7 +176,7 @@
           tex: h`\boxed{t-t_i=\pm\sqrt{\frac m2}\int_{x_i}^{x}\frac{d\xi}{\sqrt{E-U(\xi)}}}`,
           plain: "Ko poznamo potencial, ta integral pove, koliko časa telo potrebuje do izbrane lege.",
           symbols: [
-            { tex: h`\xi`, meaning: "nema integracijska spremenljivka; ni nova fizikalna količina" },
+            { tex: h`\xi`, meaning: "pomožna integracijska spremenljivka; ni nova fizikalna količina" },
             { tex: h`x_i,t_i`, meaning: "začetna lega in začetni čas" },
             { tex: h`\pm`, meaning: "trenutna smer gibanja" }
           ],
@@ -204,7 +204,7 @@
         {
           title: "Majhna nihanja in harmonična frekvenca",
           tex: h`\boxed{m\ddot\eta+U''(x_0)\eta=0,\qquad \omega_0=\sqrt{\frac{U''(x_0)}m},\qquad T_0=2\pi\sqrt{\frac m{U''(x_0)}}}`,
-          plain: "Vsaka dovolj gladka stabilna jama je za majhne odmike približno idealna vzmet.",
+          plain: "Vsaka dovolj gladka nedegenerirana stabilna jama z U″(x₀)>0 je za majhne odmike približno idealna vzmet.",
           symbols: [
             { tex: h`\eta=x-x_0`, meaning: "odmik od ravnovesja" },
             { tex: h`\omega_0`, meaning: "kotna frekvenca v rad/s" },
@@ -233,7 +233,7 @@
             { text: "Newtonova enačba postane harmonična.", tex: h`m\ddot x+kx=0` },
             { text: "Iz standardne rešitve preberemo frekvenco in periodo.", tex: h`x=A\cos(\omega t+\delta),\quad \omega^2=k/m` }
           ],
-          use: "Če profesor želi konkreten primer, začni z vzmetjo, nato povej, da Taylorjev razvoj vsak gladek minimum lokalno spremeni v tak problem."
+          use: "Če profesor želi konkreten primer, začni z vzmetjo, nato povej, da Taylorjev razvoj vsak gladek nedegeneriran minimum z U″(x₀)>0 lokalno spremeni v tak problem."
         },
         {
           title: "Primer: dvojna potencialna jama",

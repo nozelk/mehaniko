@@ -6,7 +6,9 @@ Interaktivna priprava na ustni izpit iz mehanike za tri ključne teme:
 2. gibanje v polju centralne sile,
 3. togo telo.
 
-Vsaka tema vsebuje natančen vrstni red odgovora, risbo za tablo, ključne formule z legendami simbolov ter kratke razlage in izpeljave.
+Pred tremi temami je ločeno poglavje skupnih osnov: model telesa, lega, hitrost, pospešek, masa, sila, Newtonovi zakoni, delo in kinetična energija. Šele nato uvede konservativno silo, potencialno energijo `U`, gradient ter mehansko energijo `E=T+U`.
+
+Vsaka posebna tema nato gre v vrstnem redu: kratek opomnik skupnih osnov, definicije teme in fizična predstava, formula, popolna izpeljava brez preskokov, pripravljen govor za ustni izpit ter risba za tablo. Vsebina sledi priloženemu viru `Mehanika-Izpitna-Vprasanja.pdf`.
 
 ## Javna stran
 

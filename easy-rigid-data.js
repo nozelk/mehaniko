@@ -53,7 +53,7 @@
       label: "Najpomembnejša začetna formula",
       title: "Hitrost točke = translacija + rotacija",
       tex: h`\boxed{\vec v_P=\vec v_C+\vec\omega\times\vec\xi_P}`,
-      plain: h`Vsaka točka telesa najprej dobi hitrost masnega središča. Nato dobi še tangentno hitrost zaradi vrtenja okoli masnega središča. Znak \(\times\) je križni produkt, ne navadno množenje.`,
+      plain: h`Vsaka točka telesa najprej dobi hitrost masnega središča. Nato dobi še tangencialno hitrost zaradi vrtenja okoli masnega središča. Znak \(\times\) je vektorski produkt, ne navadno množenje.`,
       terms: [
         { tex: h`P`, meaning: "poljubna materialna točka, pritrjena na telo" },
         { tex: h`C`, meaning: "masno središče; referenčna točka za translacijo" },
@@ -66,8 +66,8 @@
       ],
       derivation: [
         { title: "Razstavimo lego", text: "Položaj P je položaj središča plus vektor od središča do P.", tex: h`\vec r_P=\vec r_C+\vec\xi_P` },
-        { title: "Točka je pritrjena na telo", text: "Njene telesne koordinate ρₚ so stalne, trenutni prostorski vektor pa dobimo z rotacijo Q.", tex: h`\vec\xi_P=Q(t)\vec\rho_P,\qquad \dot{\vec\rho}_P=0` },
-        { title: "Vrteči vektor se odvaja s križnim produktom", text: "Sprememba na telo pritrjenega vektorja je tangentna na njegov krožni tir.", tex: h`\dot{\vec\xi}_P=\vec\omega\times\vec\xi_P` },
+        { title: "Točka je pritrjena na telo", text: "Njene telesne koordinate aₚ so stalne, trenutni prostorski vektor pa dobimo z rotacijo Q.", tex: h`\vec\xi_P=Q(t)\vec a_P,\qquad \dot{\vec a}_P=0` },
+        { title: "Vrteči vektor odvajamo z vektorskim produktom", text: "Sprememba na telo pritrjenega vektorja je tangencialna na njegov krožni tir.", tex: h`\dot{\vec\xi}_P=\vec\omega\times\vec\xi_P` },
         { title: "Odvajamo lego", text: "Časovni odvod položaja je hitrost.", tex: h`\dot{\vec r}_P=\dot{\vec r}_C+\dot{\vec\xi}_P` },
         { title: "Vstavimo rotacijski odvod", text: "Dobimo vsoto skupne translacije in dodatne rotacijske hitrosti.", tex: h`\vec v_P=\vec v_C+\vec\omega\times\vec\xi_P` }
       ],
@@ -77,27 +77,27 @@
     formulas: [
       {
         title: "Togost in opis lege z rotacijo Q",
-        tex: h`\boxed{|\vec r_P-\vec r_Q|=\text{konst.}},\qquad \boxed{\vec r_P=\vec r_C+Q(t)\vec\rho_P}`,
+        tex: h`\boxed{|\vec r_P-\vec r_S|=\text{konst.}},\qquad \boxed{\vec r_P=\vec r_C+Q(t)\vec a_P}`,
         plain: "Prva formula prepove deformacijo. Druga pove, da lego vsake točke dobimo iz translacije središča in orientacije telesa.",
         symbols: [
-          { tex: h`\vec r_P,\vec r_Q`, meaning: "prostorska položaja dveh materialnih točk" },
+          { tex: h`\vec r_P,\vec r_S`, meaning: "prostorska položaja dveh materialnih točk P in S" },
           { tex: h`\vec r_C`, meaning: "položaj masnega središča" },
-          { tex: h`\vec\rho_P`, meaning: "stalne koordinate P v telesnem sistemu" },
+          { tex: h`\vec a_P`, meaning: "stalne koordinate P v telesnem sistemu" },
           { tex: h`Q(t)`, meaning: "rotacijska matrika, ki telesni vektor zavrti v prostor" },
           { tex: h`Q^TQ=I,\ \det Q=1`, meaning: "Q ohranja dolžine in je rotacija, ne zrcaljenje" }
         ],
         origin: [
           { text: "Izberemo eno referenčno točko C in na telo pritrjene osi." },
-          { text: "V teh oseh je ρₚ stalen, ker se P glede na telo ne premika." },
-          { text: "Q spremeni samo orientacijo, r꜀ pa premakne celotno telo.", tex: h`\vec\xi_P=Q\vec\rho_P,\qquad \vec r_P=\vec r_C+\vec\xi_P` },
-          { text: "Tri komponente r꜀ in trije rotacijski parametri pomenijo šest prostostnih stopenj." }
+          { text: "V teh oseh je aₚ stalen, ker se P glede na telo ne premika." },
+          { text: "Q spremeni samo orientacijo, r_C pa premakne celotno telo.", tex: h`\vec\xi_P=Q\vec a_P,\qquad \vec r_P=\vec r_C+\vec\xi_P` },
+          { text: "Tri komponente r_C in trije rotacijski parametri pomenijo šest prostostnih stopenj." }
         ],
         use: "To je najbolj natančen zapis trditve »splošno gibanje = translacija + rotacija«."
       },
       {
-        title: "Križni produkt in pravilo desne roke",
+        title: "Vektorski produkt in pravilo desne roke",
         tex: h`\boxed{|\vec a\times\vec b|=|\vec a|\,|\vec b|\sin\theta},\qquad \vec a\times\vec b\perp\vec a,\vec b`,
-        plain: "Križni produkt izdela puščico, pravokotno na obe vhodni puščici. Njegova velikost meri tudi, kako pravokotna sta vektorja.",
+        plain: "Vektorski produkt izdela puščico, pravokotno na oba vhodna vektorja. Njegova velikost meri tudi, kako pravokotna sta vektorja.",
         symbols: [
           { tex: h`\theta`, meaning: "manjši kot med a in b" },
           { tex: h`\sin\theta`, meaning: "nič za vzporedna in ena za pravokotna vektorja" },
@@ -106,10 +106,10 @@
         ],
         origin: [
           { text: "Vektor b razstavimo na del vzporedno in pravokotno na a." },
-          { text: "Vzporedni del ne povzroči križnega produkta; ostane pravokotni del velikosti |b| sin θ." },
-          { text: "Zato pri vrtenju velja tangentna hitrost.", tex: h`|\vec\omega\times\vec\xi|=\omega\xi\sin\theta=\omega r_\perp` }
+          { text: "Vzporedni del ne prispeva k vektorskemu produktu; ostane pravokotni del velikosti |b| sin θ." },
+          { text: "Zato pri vrtenju dobimo tangencialno hitrost.", tex: h`|\vec\omega\times\vec\xi|=\omega\xi\sin\theta=\omega r_\perp` }
         ],
-        use: "Če točka leži na osi, je r⊥=0. Če je daleč od osi, je njena tangentna hitrost večja."
+        use: "Če točka leži na osi, je r⊥=0. Če je daleč od osi, je njena tangencialna hitrost večja."
       },
       {
         title: "Hitrost poljubne točke",
@@ -117,7 +117,7 @@
         plain: "Ista formula deluje za vsak vogal, rob in masni element togega telesa.",
         symbols: [
           { tex: h`\vec v_C`, meaning: "enak translacijski prispevek za vse točke" },
-          { tex: h`\vec\omega\times\vec\xi_P`, meaning: "tangentni prispevek, ki je odvisen od lege P" },
+          { tex: h`\vec\omega\times\vec\xi_P`, meaning: "tangencialni prispevek, ki je odvisen od lege P" },
           { tex: h`\vec\xi_P`, meaning: "ročica od C do P v trenutni legi" }
         ],
         origin: [
@@ -151,7 +151,7 @@
         symbols: [
           { tex: h`\vec e`, meaning: "enotski vektor izbrane osi" },
           { tex: h`r_\perp`, meaning: "najkrajša pravokotna razdalja masnega koščka od osi" },
-          { tex: h`dm`, meaning: "majhen košček mase; pri gostoti ρ velja dm=ρ dV" },
+          { tex: h`dm`, meaning: "majhen košček mase; pri masni gostoti ρ_m velja dm=ρ_m dV" },
           { tex: h`B`, meaning: "celotno telo, prek katerega seštevamo maso" }
         ],
         origin: [
@@ -186,7 +186,7 @@
         symbols: [
           { tex: h`\delta_{ij}`, meaning: "ena, če i=j, in nič, če i≠j" },
           { tex: h`J_{ii}`, meaning: "vztrajnostni moment okoli i-te koordinatne osi" },
-          { tex: h`J_{ij},\ i\ne j`, meaning: "deviacijski moment; v glavnih oseh je nič" },
+          { tex: h`J_{ij}=-\int_B\xi_i\xi_jdm,\ i\ne j`, meaning: "izven-diagonalna komponenta; v glavnih oseh je nič" },
           { tex: h`J_1,J_2,J_3`, meaning: "glavni vztrajnostni momenti" }
         ],
         origin: [
@@ -207,11 +207,11 @@
           { tex: h`J_i\omega_i`, meaning: "ustrezne komponente vrtilne količine" }
         ],
         origin: [
-          { text: "Za masni element je dL=ξ×dm(v−v꜀).", tex: h`\vec L_C=\int_B\vec\xi\times(\vec\omega\times\vec\xi)dm` },
+          { text: "Za masni element je dL=ξ×dm(v−v_C).", tex: h`\vec L_C=\int_B\vec\xi\times(\vec\omega\times\vec\xi)dm` },
           { text: "Trojni produkt pretvori integral v Jω.", tex: h`\vec L_C=\left[\int_B(|\vec\xi|^2I-\vec\xi\otimes\vec\xi)dm\right]\vec\omega` },
           { text: "Primer: J=diag(1,2,3), ω=(1,1,0), zato L=(1,2,0); smeri nista enaki." }
         ],
-        use: "L∥ω velja pri vrtenju okoli glavne osi ali pri sferičnem telesu J₁=J₂=J₃."
+        use: "L∥ω natanko tedaj, ko je ω lastni vektor J; to vključuje vrtenje okoli glavne osi in poljubno smer pri sferičnem telesu."
       },
       {
         title: "Kinetična energija togega telesa",
@@ -260,10 +260,10 @@
         ],
         origin: [
           { text: "Newtonov zakon seštejemo po vseh masnih elementih; notranje sile se izničijo." },
-          { text: "Za rotacijo vsak zakon križno pomnožimo z ročico in seštejemo." },
+          { text: "Za rotacijo vsak zakon vektorsko pomnožimo z ročico in seštejemo." },
           { text: "Daljša in bolj pravokotna ročica pomeni večji navor.", tex: h`|\vec N|=rF\sin\theta` }
         ],
-        use: "Vedno uporabljaj isti pol pri J, L in N. Standardna čista oblika velja za C ali fiksen pol."
+        use: "Vedno uporabljaj isti pol pri J, L in N. Čista enačba velja glede na C ali glede na telesno točko, ki miruje v inercialnem sistemu."
       },
       {
         title: "Transportni izrek za vrteče osi",
@@ -271,7 +271,7 @@
         plain: "Opazovalec v prostoru vidi spremembo komponent vektorja in še obračanje samih telesnih osi.",
         symbols: [
           { tex: h`\vec A`, meaning: "poljuben vektor, na primer vrtilna količina L" },
-          { tex: h`(d/dt)_{\rm prostor}`, meaning: "odvod v mirujočih inertnih oseh" },
+          { tex: h`(d/dt)_{\rm prostor}`, meaning: "odvod v mirujočih inercialnih oseh" },
           { tex: h`(d/dt)_{\rm telo}`, meaning: "odvod komponent v oseh, ki se vrtijo s telesom" },
           { tex: h`\vec\omega\times\vec A`, meaning: "sprememba samo zaradi vrtenja baze" }
         ],
@@ -298,7 +298,7 @@
           { text: "V telesnih oseh je J konstanten in L=Jω.", tex: h`(d\vec L_C/dt)_{\rm telo}=J_C\dot{\vec\omega}` },
           { text: "Vstavimo oba izraza in dobimo Eulerjevo enačbo." }
         ],
-        use: "Če se telo vrti samo okoli glavne osi, sta L in ω vzporedna, križni člen izgine in ostane Jᵢ ω̇ᵢ=Nᵢ."
+        use: "Če se telo vrti samo okoli glavne osi, sta L in ω vzporedna, žiroskopski člen izgine in ostane Jᵢ ω̇ᵢ=Nᵢ."
       },
       {
         title: "Eulerjeve enačbe v glavnih oseh",
@@ -312,7 +312,7 @@
         ],
         origin: [
           { text: "V glavnih oseh je Jω=(J₁ω₁,J₂ω₂,J₃ω₃)." },
-          { text: "Izračunamo križni produkt.", tex: h`\vec\omega\times J\vec\omega=((J_3-J_2)\omega_2\omega_3,(J_1-J_3)\omega_3\omega_1,(J_2-J_1)\omega_1\omega_2)` },
+          { text: "Izračunamo vektorski produkt.", tex: h`\vec\omega\times J\vec\omega=((J_3-J_2)\omega_2\omega_3,(J_1-J_3)\omega_3\omega_1,(J_2-J_1)\omega_1\omega_2)` },
           { text: "Pri čistem vrtenju okoli e₃ sta ω₁=ω₂=0, zato ostane J₃ω̇₃=N₃." }
         ],
         use: "Pred uporabo preveri: ista baza, isti pol in pravilen vrstni red J₁,J₂,J₃."
@@ -329,10 +329,10 @@
         origin: [
           { text: "Iz izreka o vrtilni količini takoj sledi L̇=0." },
           { text: "Eulerjevo enačbo skalarno pomnožimo z ω." },
-          { text: "Križni člen ne prispeva, ker je pravokoten na ω.", tex: h`\vec\omega\cdot[\vec\omega\times(J\vec\omega)]=0` },
+          { text: "Žiroskopski člen ne prispeva, ker je pravokoten na ω.", tex: h`\vec\omega\cdot[\vec\omega\times(J\vec\omega)]=0` },
           { text: "Preostali člen je odvod rotacijske energije.", tex: h`\frac d{dt}\left(\frac12\vec\omega\cdot J\vec\omega\right)=0` }
         ],
-        use: "Precesija pomeni, da telesna os riše stožec okoli stalnega L. Vrtavka na mizi zaradi teže ni prosta vrtavka."
+        use: "Pri simetrični prosti vrtavki simetrijska os riše stožec okoli stalnega L. Splošno triosno telo nima nujno tako preprostega stožca; vrtavka na mizi zaradi teže pa ni prosta."
       },
       {
         title: "Simetrična prosta vrtavka in stabilnost",
@@ -386,7 +386,7 @@
           { text: "Za krožno telo se v tangencialni smeri velikosti izenačita.", tex: h`v_C=R\omega` },
           { text: "Odvajanje da zvezo pospeškov vzdolž podlage.", tex: h`a_C=R\dot\omega` }
         ],
-        use: "Stična materialna točka miruje samo v tem trenutku. Naslednji trenutek je v stiku druga točka oboda."
+        use: "Skalarni zvezi veljata za ravno mirujočo podlago ob dosledni izbiri predznakov. Stična materialna točka ima v tistem trenutku hitrost nič, njen pospešek pa ni nujno nič."
       },
       {
         title: "Primer: homogen valj na klancu",
@@ -403,22 +403,22 @@
           { text: "Le trenje ima navor okoli C, zato Jω̇=FₜR." },
           { text: "Iz vezi a=Rω̇ dobimo Fₜ=J a/R²." },
           { text: "Vstavimo v translacijo.", tex: h`\left(M+\frac{J_C}{R^2}\right)a=Mg\sin\beta` },
-          { text: "Za poln valj J꜀=MR²/2.", tex: h`a=\frac23g\sin\beta` }
+          { text: "Za poln valj velja J_C=MR²/2.", tex: h`a=\frac23g\sin\beta` }
         ],
         use: "Po izračunu preveri |Fₜ|≤μₛN. Če pogoj ni izpolnjen, valj drsi in zveza a=Rω̇ ne velja."
       }
     ],
     checkpoints: [
       "Znaš s primerom knjige brez formule ločiti translacijo od rotacije?",
-      "Znaš povedati smer in velikost križnega produkta ω×ξ?",
+      "Znaš povedati smer in velikost vektorskega produkta ω×ξ?",
       "Znaš razložiti, zakaj točka na osi nima rotacijske hitrosti?",
-      "Znaš po kosih razložiti vsak simbol v vₚ=v꜀+ω×ξₚ?",
+      "Znaš po kosih razložiti vsak simbol v vₚ=v_C+ω×ξₚ?",
       "Znaš iz formule za hitrost brez preskoka izpeljati formulo za pospešek?",
-      "Znaš razložiti razliko med telesnim vektorjem ρₚ in trenutnim vektorjem ξₚ?",
+      "Znaš razložiti razliko med telesnim vektorjem aₚ in trenutnim vektorjem ξₚ?",
       "Znaš s primerom dveh mas pojasniti, zakaj masa daleč od osi prispeva z razdaljo na kvadrat?",
       "Znaš najprej razložiti skalarni Jₑ in šele nato tenzor J?",
       "Znaš s številčnim primerom pokazati, zakaj L in ω nista nujno vzporedna?",
-      "Znaš pojasniti, zakaj Eulerjev križni člen ni dodatna fizična sila?",
+      "Znaš pojasniti, zakaj Eulerjev žiroskopski člen ni dodatna fizična sila?",
       "Znaš povedati, kaj je pri prosti vrtavki konstantno v prostoru in kaj se lahko spreminja glede na telo?",
       "Znaš z besedami definirati precesijo in ločiti e₃, ω ter L?",
       "Znaš pojasniti, zakaj sta vrtenji okoli najmanjše in največje glavne osi stabilni, srednja os pa ne?",

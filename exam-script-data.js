@@ -59,18 +59,18 @@
           write: [
             h`\frac12m\bigl(\dot{x}\bigr)^2=E-U(x)\ge0`,
             h`\boxed{\dot{x}=\pm\sqrt{\frac{2}{m}\,[E-U(x)]}}`,
-            h`U(a)=E\Rightarrow\dot{x}(a)=0`,
+            h`U(a)=E,\quad U'(a)\ne0\Rightarrow\dot{x}(a)=0\quad\text{(navadno obračališče)}`,
             h`U'(x_0)=0,\quad U''(x_0)>0\Rightarrow\text{stabilno}`
           ],
           legend: [
             { tex: h`E-U(x)`, meaning: "kinetična energija; zato mora biti ≥ 0" },
             { tex: h`\dot x`, meaning: "hitrost" },
             { tex: h`\pm`, meaning: "gibanje desno oziroma levo" },
-            { tex: h`a`, meaning: "obračališče, kjer je hitrost nič" },
+            { tex: h`a`, meaning: "navadno obračališče; U(a)=E in U′(a)≠0" },
             { tex: h`x_0`, meaning: "ravnovesna lega" },
             { tex: h`U'(x_0),\ U''(x_0)`, meaning: "naklon in ukrivljenost potenciala v ravnovesju" }
           ],
-          meaning: "Plus je gibanje desno, minus levo. Obračališče ima ničelno hitrost, vendar sila navadno ni nič; ravnovesje ima ničelno silo."
+          meaning: "Plus je gibanje desno, minus levo. V navadnem obračališču je hitrost nič, sila pa ni nič in telo obrne. Če je hkrati tudi U′=0, gre lahko za mejni primer, na primer asimptotično približevanje separatrisi. Ravnovesna lega ima ničelno silo; telo v njej ostane le, če je tudi začetna hitrost nič."
         },
         {
           title: "Pokažem čas in periodo",
@@ -91,7 +91,7 @@
         },
         {
           title: "Razložim formulo s Taylorjem brez preskoka",
-          say: h`»Zelo blizu stabilnega ravnovesja je vsak gladek potencial približno parabola. Ravnovesje označim z \(x_0\) in potencial razvijem okoli te točke, kjer je prvi odvod nič.«`,
+          say: h`»Zelo blizu nedegeneriranega stabilnega ravnovesja, kjer je \(U''(x_0)>0\), je gladek potencial v najnižjem redu parabola. Ravnovesje označim z \(x_0\) in potencial razvijem okoli te točke, kjer je prvi odvod nič. Če je \(U''(x_0)=0\), moram pogledati višje člene.«`,
           write: [
             h`\eta=x-x_0`,
             h`U(x_0+\eta)=U(x_0)+U'(x_0)\eta+\frac12U''(x_0)\eta^2+\cdots`,
@@ -132,7 +132,7 @@
         h`Povej, da je \(E-U\) kinetična energija in zato ne sme biti negativna.`,
         h`Pri Taylorju obvezno povej: \(U'(x_0)=0\), \(1/2=1/2!\), odmik je majhen.`
       ],
-      last: h`»Torej iz grafa \(U(x)\) dobim silo, dovoljena območja, obračališča in stabilnost, z energijsko kvadraturo čas, blizu minimuma pa harmonično nihanje.«`
+      last: h`»Torej iz grafa \(U(x)\) dobim silo, dovoljena območja, obračališča in stabilnost, z energijsko kvadraturo čas, blizu nedegeneriranega minimuma pa harmonično nihanje.«`
     },
 
     "centralna-sila": {
@@ -140,7 +140,7 @@
       title: "Če dobim centralno silo, grem po teh 7 korakih",
       first: h`»Centralna sila je vedno usmerjena po zveznici med delcem in fiksnim centrom ter je po velikosti odvisna samo od razdalje \(r\).«`,
       draw: [
-        { title: "Center in vektorji", text: h`Nariši center \(O\), delec, radij-vektor \(\vec r\), radialno silo \(\vec F\) ter hitrost \(\vec v\).` },
+        { title: "Center in vektorji", text: h`Nariši center \(O\), delec, krajevni vektor \(\vec r\), radialno silo \(\vec F\) ter hitrost \(\vec v\).` },
         { title: "Ravnina", text: h`Pravokotno na ravnino nariši \(\vec L\) in povej, da njegova stalna smer zaklene gibanje v ravnino.` },
         { title: "Ploščine", text: "Na orbiti osenči dva ozka ploščinska izseka enake ploščine; bližje centru naj bo lok daljši." },
         { title: "Efektivni potencial", text: h`Nariši \(U(r)\), pozitivni centrifugalni člen in njuno vsoto \(U_{\rm ef}(r)\). Dodaj črto \(E\), obračališči \(r_-,r_+\) in minimum \(r_c\).` },
@@ -155,7 +155,7 @@
             h`\vec F=-U'(r)\vec e_r`
           ],
           legend: [
-            { tex: h`\vec r`, meaning: "radij-vektor od centra do delca" },
+            { tex: h`\vec r`, meaning: "krajevni vektor od centra do delca" },
             { tex: h`r=|\vec r|`, meaning: "razdalja delca od centra" },
             { tex: h`\vec e_r=\vec r/r`, meaning: "radialni enotski vektor navzven" },
             { tex: h`\vec F`, meaning: "vektor centralne sile" },
@@ -166,7 +166,7 @@
         },
         {
           title: "Iz ničelnega navora dobim ohranitev L in ravnino",
-          say: h`»Ker sta \(\vec r\) in \(\vec F\) vzporedna, je njun križni produkt nič. Navor zato ne spreminja vrtilne količine.«`,
+          say: h`»Ker sta \(\vec r\) in \(\vec F\) vzporedna, je njun vektorski produkt nič. Navor zato ne spreminja vrtilne količine.«`,
           write: [
             h`\vec N_O=\vec r\times\vec F=0`,
             h`\frac{d\vec L}{dt}=\vec N_O\Rightarrow\boxed{\vec L=\vec r\times m\vec v=\mathrm{konst.}}`,
@@ -174,7 +174,7 @@
           ],
           legend: [
             { tex: h`\vec N_O`, meaning: "navor glede na center O" },
-            { tex: h`\times`, meaning: "vektorski oziroma križni produkt" },
+            { tex: h`\times`, meaning: "vektorski produkt" },
             { tex: h`\vec L`, meaning: "vrtilna količina" },
             { tex: h`\vec v`, meaning: "hitrost delca" },
             { tex: h`\dot{\vec L}`, meaning: "časovna sprememba vrtilne količine" },
@@ -184,14 +184,14 @@
         },
         {
           title: "Izpeljem ploščinski zakon",
-          say: h`»V času \(dt\) radij-vektor opiše tanek trikotnik. Njegova ploščina je polovica križnega produkta.«`,
+          say: h`»V času \(dt\) krajevni vektor opiše tanek trikotnik. Njegova ploščina je polovica velikosti vektorskega produkta.«`,
           write: [
             h`dA=\frac12|\vec r\times d\vec r|`,
             h`\boxed{\dot A=\frac12|\vec r\times\vec v|=\frac{L}{2m}=\mathrm{konst.}}`,
             h`L=mr^2\dot\varphi`
           ],
           legend: [
-            { tex: h`A,\ dA`, meaning: "prebrisana ploščina in njen majhen prirastek" },
+            { tex: h`A,\ dA`, meaning: "pometena ploščina in njen majhen prirastek" },
             { tex: h`\dot A=\frac{dA}{dt}`, meaning: "ploščinska hitrost" },
             { tex: h`\vec r,\ \vec v`, meaning: "lega in hitrost delca" },
             { tex: h`L=|\vec L|`, meaning: "velikost vrtilne količine" },
@@ -294,7 +294,7 @@
       first: h`»Togo telo je sistem materialnih točk, pri katerem so vse medsebojne razdalje konstantne. Splošno gibanje razcepim na translacijo masnega središča in rotacijo okoli njega.«`,
       draw: [
         { title: "Telo, C in P", text: h`Nariši poševno knjigo ali ploščo. Označi masno središče \(C\), poljubno točko \(P\), \(\vec r_C\) in \(\vec\xi_P\) od \(C\) do \(P\).` },
-        { title: "Hitrosti", text: h`Pri \(C\) nariši \(\vec v_C\), skozi telo os \(\vec\omega\), pri \(P\) pa tangentno puščico \(\vec\omega\times\vec\xi_P\).` },
+        { title: "Hitrosti", text: h`Pri \(C\) nariši \(\vec v_C\), skozi telo os \(\vec\omega\), pri \(P\) pa tangencialno puščico \(\vec\omega\times\vec\xi_P\).` },
         { title: "Glavne osi", text: h`Skozi \(C\) nariši telesne osi \(\vec e_1,\vec e_2,\vec e_3\) in ob njih napiši \(J_1,J_2,J_3\).` },
         { title: "Prosta vrtavka", text: h`Nariši fiksni \(\vec L\), telesno os \(\vec e_3\) in \(\vec\omega\); os \(\vec e_3\) naj okoli \(\vec L\) opisuje stožec.` },
         { title: "Kotaljenje", text: h`Če profesor vpraša primer, nariši kolo z \(C\), stično točko \(A\), \(v_A=0\), \(v_C\) in \(v_{\rm zgoraj}=2v_C\).` }
@@ -305,19 +305,19 @@
           say: h`»Tri koordinate določijo lego masnega središča, tri pa orientacijo. Orientacijo opišem z rotacijsko matriko \(Q(t)\).«`,
           write: [
             h`|\vec r_P-\vec r_Q|=\mathrm{konst.}`,
-            h`\boxed{\vec r_P=\vec r_C+\vec\xi_P},\qquad\vec\xi_P=Q(t)\vec\rho_P`,
+            h`\boxed{\vec r_P=\vec r_C+\vec\xi_P},\qquad\vec\xi_P=Q(t)\vec a_P`,
             h`Q^TQ=I,\qquad\det Q=1`
           ],
           legend: [
             { tex: h`\vec r_P,\ \vec r_Q`, meaning: "legi dveh materialnih točk" },
             { tex: h`\vec r_C`, meaning: "lega masnega središča" },
             { tex: h`\vec\xi_P`, meaning: "trenutni prostorski vektor od C do P" },
-            { tex: h`\vec\rho_P`, meaning: "stalne koordinate P v telesnem sistemu" },
+            { tex: h`\vec a_P`, meaning: "stalne koordinate P v telesnem sistemu" },
             { tex: h`Q(t)`, meaning: "rotacijska matrika orientacije" },
             { tex: h`I`, meaning: "identitetna matrika" },
             { tex: h`Q^TQ=I,\ \det Q=1`, meaning: "Q je prava rotacija, ki ohranja dolžine" }
           ],
-          meaning: h`\(\vec\rho_P\) je stalen zapis točke v telesnih oseh, \(\vec\xi_P\) pa njen trenutni vektor v prostoru. \(Q\) predstavlja orientacijo; \(\vec\omega\) predstavlja hitrost spreminjanja orientacije.`
+          meaning: h`\(\vec a_P\) je stalen zapis točke v telesnih oseh, \(\vec\xi_P\) pa njen trenutni vektor v prostoru. \(Q\) predstavlja orientacijo; \(\vec\omega\) predstavlja hitrost spreminjanja orientacije.`
         },
         {
           title: "Izpeljem hitrost poljubne točke",
@@ -333,9 +333,9 @@
             { tex: h`\dot{\vec\xi}_P`, meaning: "sprememba ročice v prostoru" },
             { tex: h`\vec\omega`, meaning: "kotna hitrost" },
             { tex: h`\vec v_P,\ \vec v_C`, meaning: "hitrosti točke P in središča C" },
-            { tex: h`\times`, meaning: "vektorski produkt; poda tangentno smer" }
+            { tex: h`\times`, meaning: "vektorski produkt; poda tangencialno smer" }
           ],
-          meaning: h`Prvi člen je enaka translacija za vse točke. Drugi je tangentna hitrost zaradi rotacije z velikostjo \(\omega r_\perp\). Točka na osi ima rotacijsko hitrost nič.`
+          meaning: h`Prvi člen je enaka translacija za vse točke. Drugi je tangencialna hitrost zaradi rotacije z velikostjo \(\omega r_\perp\). Točka na osi ima rotacijsko hitrost nič.`
         },
         {
           title: "Še enkrat odvajam in dobim pospešek",
@@ -400,14 +400,14 @@
           ],
           legend: [
             { tex: h`\vec A`, meaning: "poljuben vektor" },
-            { tex: h`(d/dt)_{\rm prostor}`, meaning: "odvod, ki ga vidi inertni opazovalec" },
+            { tex: h`(d/dt)_{\rm prostor}`, meaning: "odvod, ki ga vidi inercialni opazovalec" },
             { tex: h`(d/dt)_{\rm telo}`, meaning: "odvod komponent v vrtečih telesnih oseh" },
             { tex: h`\vec\omega`, meaning: "kotna hitrost vrteče baze" },
             { tex: h`J`, meaning: "vztrajnostni tenzor v telesnih oseh" },
             { tex: h`\vec L=J\vec\omega`, meaning: "vrtilna količina" },
             { tex: h`\vec N_C`, meaning: "zunanji navor okoli C" }
           ],
-          meaning: h`Križni člen ni dodaten fizični navor; nastane zaradi zapisa v vrtečih se telesnih oseh. Pri vrtenju okoli glavne osi izgine in ostane \(J_i\dot\omega_i=N_i\).`
+          meaning: h`Žiroskopski člen ni dodaten fizični navor; nastane zaradi zapisa v vrtečih se telesnih oseh. Pri vrtenju okoli glavne osi izgine in ostane \(J_i\dot\omega_i=N_i\).`
         },
         {
           title: "Za prosto vrtavko povem ohranitve in stabilnost",

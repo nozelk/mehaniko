@@ -13,7 +13,7 @@
     before: [
       h`Puščica nad simbolom pomeni vektor: \(\vec r\) ima velikost in smer. Brez puščice je \(r=|\vec r|\) samo razdalja, torej nenegativno število. Enako je \(\vec L\) vektor, \(L=|\vec L|\) pa njegova velikost.`,
       h`Pika pomeni odvod po času: \(\dot r=dr/dt\) in \(\dot\varphi=d\varphi/dt\). Pri Binetovi enačbi črtica pomeni nekaj drugega: \(u'=du/d\varphi\), odvod po kotu.`,
-      h`Križni produkt \(\vec a\times\vec b\) je pravokoten na oba vektorja. Njegova velikost je \(ab\sin\alpha\), zato je nič, kadar sta vektorja vzporedna.`,
+      h`Vektorski produkt \(\vec a\times\vec b\) je pravokoten na oba vektorja. Njegova velikost je \(ab\sin\alpha\), zato je nič, kadar sta vektorja vzporedna.`,
       h`V polarnih koordinatah \(r\) pove oddaljenost od centra, \(\varphi\) pa smer. Enotski vektor \(\vec e_r\) kaže radialno navzven, \(\vec e_\varphi\) pa pravokotno v smeri naraščanja kota.`,
       h`V zapisu \(\vec F=F(r)\vec e_r\) je \(F(r)\) predznačeno število. \(F(r)<0\) pomeni privlačno silo proti centru, \(F(r)>0\) pa odbojno silo navzven.`,
       h`»Integral gibanja« pomeni količino, ki se med gibanjem ne spreminja. Tu sta najpomembnejša vrtilna količina \(\vec L\) in mehanska energija \(E\).`
@@ -26,7 +26,7 @@
       },
       {
         title: "2. Zakaj je navor nič?",
-        body: h`Navor glede na center je \(\vec N_O=\vec r\times\vec F\). Ker sta pri centralni sili \(\vec r\) in \(\vec F\) vzporedna, je njun križni produkt nič. Sila zato ne more spremeniti vrtilne količine okoli centra.`,
+        body: h`Navor glede na center je \(\vec N_O=\vec r\times\vec F\). Ker sta pri centralni sili \(\vec r\) in \(\vec F\) vzporedna, je njun vektorski produkt nič. Sila zato ne more spremeniti vrtilne količine okoli centra.`,
         analogy: "Vrata se ne zavrtijo, če jih potiskaš naravnost proti tečaju."
       },
       {
@@ -36,7 +36,7 @@
       },
       {
         title: "4. Kaj pravi ploščinski zakon?",
-        body: h`Radij od centra do delca v enakih časih prebriše enake ploščine. Blizu centra mora delec v istem času prepotovati daljši lok, zato se tam giblje hitreje. To je drugi Keplerjev zakon in velja za vsako centralno silo.`,
+        body: h`Krajevni vektor od centra do delca v enakih časih pomete enake ploščine. Blizu centra mora delec v istem času prepotovati daljši lok, zato se tam giblje hitreje. To je drugi Keplerjev zakon in velja za vsako centralno silo.`,
         analogy: "Kakor kamen na vrvi: ko je bližje roki in ni zunanjega navora, se mora okoli nje gibati hitreje."
       },
       {
@@ -139,7 +139,7 @@
         plain: "Navor meri vrtilni učinek sile okoli O. Centralna sila nima ročice, ker njena premica poteka skozi O.",
         symbols: [
           { tex: h`\vec N_O`, meaning: "navor sile glede na center O" },
-          { tex: h`\times`, meaning: "križni produkt" },
+          { tex: h`\times`, meaning: "vektorski produkt" },
           { tex: h`N=r|\vec F|\sin\alpha`, meaning: "velikost navora; α je kot med r in F" }
         ],
         origin: [
@@ -161,7 +161,7 @@
         ],
         origin: [
           { text: "Odvajamo definicijo L.", tex: h`\dot{\vec L}=\dot{\vec r}\times m\vec v+\vec r\times m\vec a` },
-          { text: "Ker je v=dot r vektorsko, je prvi križni produkt vektorja s samim seboj nič.", tex: h`\vec v\times m\vec v=\vec0` },
+          { text: "Prvi člen je vektorski produkt hitrosti same s seboj, zato je enak nič.", tex: h`\vec v\times m\vec v=\vec0` },
           { text: "Newtonov zakon m a=F spremeni drugi člen v navor.", tex: h`\dot{\vec L}=\vec r\times\vec F=\vec N_O` },
           { text: "Za centralno silo je navor nič, zato je L konstanten." }
         ],
@@ -177,7 +177,7 @@
           { tex: h`L=0`, meaning: "posebni primer čisto radialnega gibanja" }
         ],
         origin: [
-          { text: "Križni produkt r×mv je po definiciji pravokoten na r in v." },
+          { text: "Vektorski produkt r×mv je po definiciji pravokoten na r in v." },
           { text: "Ničelni navor ohrani smer L." },
           { text: "Vsi možni vektorji r so zato v isti ravnini, pravokotni na isto stalno smer L." },
           { text: "Če je L=0, sta r in v vzporedna in tir je premica skozi center." }
@@ -205,9 +205,9 @@
       {
         title: "Ploščinska hitrost in drugi Keplerjev zakon",
         tex: h`\boxed{\dot A=\frac12|\vec r\times\vec v|=\frac{L}{2m}=\text{konst.},\qquad C_0=r^2\dot\varphi=\frac Lm}`,
-        plain: "Radij-vektor v enakih časih prebriše enake ploščine. Ko je r manjši, morata biti kotna in tangencialna hitrost večji.",
+        plain: "Krajevni vektor v enakih časih pomete enake ploščine. Ko je r manjši, morata biti kotna in tangencialna hitrost večji.",
         symbols: [
-          { tex: h`A`, meaning: "ploščina, ki jo prebriše radij-vektor" },
+          { tex: h`A`, meaning: "ploščina, ki jo pomete krajevni vektor" },
           { tex: h`\dot A`, meaning: "ploščina na čas" },
           { tex: h`C_0`, meaning: "specifična vrtilna količina oziroma dvojna ploščinska hitrost" },
           { tex: h`r^2\dot\varphi`, meaning: "konstanta pri vsakem centralnem gibanju" }
@@ -296,7 +296,7 @@
         plain: "Prvi integral pove, koliko časa potrebujemo do izbrane razdalje. Drugi pove, za koliko se v istem radialnem odseku zasukamo okoli centra.",
         symbols: [
           { tex: h`t_0,r_0`, meaning: "začetni čas in začetna razdalja" },
-          { tex: h`s`, meaning: "nema integracijska spremenljivka za razdaljo" },
+          { tex: h`s`, meaning: "pomožna integracijska spremenljivka za razdaljo" },
           { tex: h`\pm`, meaning: "trenutna radialna smer gibanja" },
           { tex: h`\varphi(t_0)`, meaning: "začetni polarni kot" }
         ],
@@ -381,7 +381,7 @@
         origin: [
           { text: "I. zakon sledi iz Binetove rešitve za vezano orbito ε<1." },
           { text: "II. zakon sledi iz ničelnega navora in zato velja za vsako centralno silo." },
-          { text: "V eni periodi radij prebriše celotno elipso.", tex: h`T=\frac{A_{\rm el}}{\dot A}=\frac{2\pi abm}{L}` },
+          { text: "V eni periodi krajevni vektor pomete celotno elipso.", tex: h`T=\frac{A_{\rm el}}{\dot A}=\frac{2\pi abm}{L}` },
           { text: "Za gravitacijsko elipso velja p=b²/a in p=L²/(GMm²)." },
           { text: "Vstavimo in pokrajšamo b.", tex: h`T^2=\frac{4\pi^2a^2b^2m^2}{L^2}=\frac{4\pi^2}{GM}a^3` }
         ],
