@@ -3216,8 +3216,8 @@ h2 {
 
 .checkpoint-card {
   display: grid;
-  grid-template-columns: 28px 1fr;
-  gap: 10px;
+  grid-template-columns: 28px minmax(0, 1fr) 20px;
+  gap: 11px;
   align-items: start;
   padding: 14px;
   border: 1px solid rgba(117, 221, 178, .22);
@@ -3225,10 +3225,15 @@ h2 {
   background: rgba(117, 221, 178, .045);
   color: #c8d8d0;
   font-size: .79rem;
+  line-height: 1.55;
+  cursor: pointer;
+  transition: border-color .16s ease, background .16s ease, transform .16s ease;
 }
 
 .checkpoint-card::before {
   content: "✓";
+  grid-column: 1;
+  grid-row: 1;
   width: 25px;
   height: 25px;
   display: grid;
@@ -3237,6 +3242,48 @@ h2 {
   border-radius: 50%;
   color: var(--green);
   font-weight: 850;
+}
+
+.checkpoint-card > span {
+  grid-column: 2;
+  grid-row: 1;
+  min-width: 0;
+  padding-top: 2px;
+}
+
+.checkpoint-card > span > b {
+  display: inline-grid;
+  place-items: center;
+  min-width: 20px;
+  height: 20px;
+  margin: -1px 7px 0 0;
+  padding: 0 5px;
+  border-radius: 6px;
+  color: #07100c;
+  background: var(--green);
+  font: 850 .62rem/1 var(--mono);
+  vertical-align: middle;
+}
+
+.checkpoint-card > input {
+  grid-column: 3;
+  grid-row: 1;
+  width: 17px;
+  height: 17px;
+  margin: 4px 0 0;
+  accent-color: var(--green);
+  cursor: pointer;
+}
+
+.checkpoint-card:hover {
+  border-color: rgba(117, 221, 178, .5);
+  background: rgba(117, 221, 178, .075);
+  transform: translateY(-1px);
+}
+
+.checkpoint-card:has(input:checked) {
+  border-color: rgba(117, 221, 178, .62);
+  background: rgba(117, 221, 178, .1);
 }
 
 .three-home-progress {
